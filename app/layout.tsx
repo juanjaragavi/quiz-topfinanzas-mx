@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { metadata as metadataStrings } from "@/lib/strings"
+import { metadata as metadataStrings } from "@/lib/constants"
 import { Poppins } from "next/font/google"
 import "./globals.css"
 

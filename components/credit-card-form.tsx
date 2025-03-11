@@ -7,7 +7,7 @@ import Step1 from "./steps/step1"
 import Step2 from "./steps/step2"
 import Step3 from "./steps/step3"
 import Logo from "./ui/logo"
-import { formStrings } from "@/lib/strings"
+import { formStrings } from "@/lib/constants"
 
 export default function CreditCardForm() {
   const [step, setStep] = useState(1)
