@@ -48,7 +48,7 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
   return (
     <div className="space-y-4">
       <div className="text-center mb-4">
-        <div className="bg-[#4ECCE6] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">
+        <div className="bg-[#4ECCE6] text-gray-200 rounded-full py-1 px-3 inline-block mb-1 text-xs">
           {step3Strings.progress}
         </div>
         <h2 className="text-sm font-medium">{step3Strings.title}</h2>
