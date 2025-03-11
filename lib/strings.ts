@@ -1,7 +1,3 @@
-// Text strings used throughout the application
-
-import { metadata, formStrings } from "./constants"
-
 export const step1Strings = {
   progress: "1 / 2",
   title: "Find your credit card",
@@ -14,7 +10,7 @@ export const step1Strings = {
     { id: "E", label: "Cashback rewards" },
     { id: "F", label: "Low or 0% APR" },
   ],
-}
+};
 
 export const step2Strings = {
   progress: "2 / 2",
@@ -28,15 +24,4 @@ export const step2Strings = {
     { id: "E", label: "Between $15,000 and $20,000" },
     { id: "F", label: "More than $20,000" },
   ],
-}
-
-export const step3Strings = {
-  progress: "Almost there!",
-  title: "Not long! Enter your data to find your result",
-  fields: {
-    email: "Email",
-    name: "Name",
-  },
-  checkbox: "I agree to receive personalized messages",
-  button: "Get Recommendation",
-}
+};

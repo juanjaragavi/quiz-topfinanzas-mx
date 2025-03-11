@@ -7,7 +7,7 @@ import { useState } from "react"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { step3Strings } from "@/lib/strings"
+import { step3Strings } from "@/lib/constants"
 
 interface Step3Props {
   formData: {

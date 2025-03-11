@@ -1,17 +1,5 @@
 # Credit Card Finder Strings
 
-## formStrings
-
-### progressBar
-
-- complete: "% complete"
-- keepItUp: ", keep it up!"
-- completed: "!"
-
-### submission
-
-- success: "Form submitted successfully!"
-
 ## step1Strings
 
 - progress: "1 / 2"
@@ -41,8 +29,3 @@
 - id: "D", label: "Between $10,000 and $15,000"
 - id: "E", label: "Between $15,000 and $20,000"
 - id: "F", label: "More than $20,000"
-
-## step3Strings
-
-- progress: "Almost there!"
-- title: "Not long! Enter your data to find your result"
