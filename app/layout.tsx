@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { metadata as metadataStrings } from "@/lib/strings"
 import { Poppins } from "next/font/google"
 import "./globals.css"
 
@@ -11,9 +12,9 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Credit Card Finder",
-  description: "Find the perfect credit card for your needs",
-    generator: 'v0.dev'
+  title: metadataStrings.title,
+  description: metadataStrings.description,
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({

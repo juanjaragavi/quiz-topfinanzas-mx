@@ -7,6 +7,7 @@ import { useState } from "react"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
+import { step3Strings } from "@/lib/strings"
 
 interface Step3Props {
   formData: {
@@ -48,9 +49,9 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
     <div className="space-y-4">
       <div className="text-center mb-4">
         <div className="bg-[#4ECCE6] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">
-          Almost there!
+          {step3Strings.progress}
         </div>
-        <h2 className="text-sm font-medium">Not long! Enter your data to find your result</h2>
+        <h2 className="text-sm font-medium">{step3Strings.title}</h2>
       </div>
 
       <motion.div
@@ -61,7 +62,7 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
       >
         <div className="space-y-1.5">
           <Label htmlFor="email" className="text-sm">
-            Email
+            {step3Strings.fields.email}
           </Label>
           <Input
             id="email"
@@ -75,7 +76,7 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
 
         <div className="space-y-1.5">
           <Label htmlFor="name" className="text-sm">
-            Name
+            {step3Strings.fields.name}
           </Label>
           <Input
             id="name"
@@ -95,7 +96,7 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
             className="mt-0.5 data-[state=checked]:bg-[#8DC63F] data-[state=checked]:border-[#8DC63F]"
           />
           <Label htmlFor="receiveMessages" className="text-xs">
-            I agree to receive personalized messages
+            {step3Strings.checkbox}
           </Label>
         </div>
       </motion.div>
@@ -106,10 +107,9 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
           onClick={onSubmit}
           className="w-full py-3 text-sm font-medium rounded-full bg-[#8DC63F] hover:bg-[#6BA828] text-white transition-colors shadow-md"
         >
-          Get Recommendation
+          {step3Strings.button}
         </button>
       </motion.div>
     </div>
   )
 }
-

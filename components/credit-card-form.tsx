@@ -7,6 +7,7 @@ import Step1 from "./steps/step1"
 import Step2 from "./steps/step2"
 import Step3 from "./steps/step3"
 import Logo from "./ui/logo"
+import { formStrings } from "@/lib/strings"
 
 export default function CreditCardForm() {
   const [step, setStep] = useState(1)
@@ -35,7 +36,7 @@ export default function CreditCardForm() {
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault()
     console.log("Form submitted with data:", formData)
-    alert("Form submitted successfully!")
+    alert(formStrings.submission.success)
   }
 
   return (
@@ -75,25 +76,23 @@ export default function CreditCardForm() {
               />
             </div>
             <div className="text-center text-sm text-gray-600">
-              {progress}% complete{progress < 100 ? ", keep it up!" : "!"}
+              {progress}{formStrings.progressBar.complete}{progress < 100 ? formStrings.progressBar.keepItUp : formStrings.progressBar.completed}
             </div>
           </div>
 
           <p className="text-xs text-gray-600 text-justify pb-6 leading-tight">
-            By signing up, I agree to receive messages and accept the{" "}
+            {formStrings.footer.termsText}{" "}
             <a href="#" className="text-[#2E74B5]">
-              Terms of Use
+              {formStrings.footer.termsLink}
             </a>{" "}
-            and{" "}
+            {formStrings.footer.and}{" "}
             <a href="#" className="text-[#2E74B5]">
-              Privacy Policy
+              {formStrings.footer.privacyLink}
             </a>
-            . Message frequency varies based on quiz answers. Text HELP for help or STOP to cancel. Your data is secure
-            and encrypted.
+            . {formStrings.footer.disclaimer}
           </p>
         </div>
       </div>
     </div>
   )
 }
-

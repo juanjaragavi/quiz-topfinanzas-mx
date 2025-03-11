@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import OptionButton from "../ui/option-button"
+import { step2Strings } from "@/lib/strings"
 
 interface Step2Props {
   formData: {
@@ -14,14 +15,7 @@ interface Step2Props {
 export default function Step2({ formData, updateFormData }: Step2Props) {
   const [selected, setSelected] = useState(formData.income)
 
-  const options = [
-    { id: "A", label: "Less than $2,500 USD" },
-    { id: "B", label: "Between $2,500 and $5,000" },
-    { id: "C", label: "Between $5,000 and $10,000" },
-    { id: "D", label: "Between $10,000 and $15,000" },
-    { id: "E", label: "Between $15,000 and $20,000" },
-    { id: "F", label: "More than $20,000" },
-  ]
+  const options = step2Strings.options
 
   const handleSelect = (id: string) => {
     setSelected(id)
@@ -31,8 +25,8 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <div className="bg-[#B8E986] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">2 / 2</div>
-        <h2 className="text-base font-medium">Find your credit card</h2>
+        <div className="bg-[#B8E986] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">{step2Strings.progress}</div>
+        <h2 className="text-base font-medium">{step2Strings.title}</h2>
       </div>
 
       <motion.h1
@@ -41,7 +35,7 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        What is your monthly income?
+        {step2Strings.question}
       </motion.h1>
 
       <motion.div
@@ -64,4 +58,3 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
     </div>
   )
 }
-

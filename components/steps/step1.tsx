@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import OptionButton from "../ui/option-button"
+import { step1Strings } from "@/lib/strings"
 
 interface Step1Props {
   formData: {
@@ -14,14 +15,7 @@ interface Step1Props {
 export default function Step1({ formData, updateFormData }: Step1Props) {
   const [selected, setSelected] = useState(formData.preference)
 
-  const options = [
-    { id: "A", label: "High credit limit" },
-    { id: "B", label: "Instant approval" },
-    { id: "C", label: "No credit check required" },
-    { id: "D", label: "No annual fee" },
-    { id: "E", label: "Cashback rewards" },
-    { id: "F", label: "Low or 0% APR" },
-  ]
+  const options = step1Strings.options
 
   const handleSelect = (id: string) => {
     setSelected(id)
@@ -31,8 +25,8 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <div className="bg-[#B8E986] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">1 / 2</div>
-        <h2 className="text-base font-medium">Find your credit card</h2>
+        <div className="bg-[#B8E986] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">{step1Strings.progress}</div>
+        <h2 className="text-base font-medium">{step1Strings.title}</h2>
       </div>
 
       <motion.h1
@@ -41,7 +35,7 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        What matters most to you when choosing a credit card?
+        {step1Strings.question}
       </motion.h1>
 
       <motion.div
@@ -64,4 +58,3 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
     </div>
   )
 }
-
