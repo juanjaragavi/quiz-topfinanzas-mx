@@ -1,27 +1,29 @@
 export const step1Strings = {
-  progress: "1 / 2",
-  title: "Find your credit card",
-  question: "What matters most to you when choosing a credit card?",
+  progress: "[=======                 ] 33%",
+  title: "Find the Perfect Credit Card for You!",
+  question: "What's your primary goal for using a credit card?",
   options: [
-    { id: "A", label: "High credit limit" },
-    { id: "B", label: "Instant approval" },
-    { id: "C", label: "No credit check required" },
-    { id: "D", label: "No annual fee" },
-    { id: "E", label: "Cashback rewards" },
-    { id: "F", label: "Low or 0% APR" },
+    { id: "A", label: "Build Credit" },
+    { id: "B", label: "Earn Rewards (Travel, Cash Back, etc.)" },
+    { id: "C", label: "Save Money on Interest" },
+    { id: "D", label: "Consolidate Debt" },
+    { id: "E", label: "Make everyday purchases and pay them off." },
   ],
 };
 
 export const step2Strings = {
-  progress: "2 / 2",
-  title: "Find your credit card",
-  question: "What is your monthly income?",
+  progress: "[===============         ] 66%",
+  title: "Find the Perfect Credit Card for You!",
+  question: "How would you describe your spending habits?",
   options: [
-    { id: "A", label: "Less than $2,500 USD" },
-    { id: "B", label: "Between $2,500 and $5,000" },
-    { id: "C", label: "Between $5,000 and $10,000" },
-    { id: "D", label: "Between $10,000 and $15,000" },
-    { id: "E", label: "Between $15,000 and $20,000" },
-    { id: "F", label: "More than $20,000" },
+    { id: "A", label: "I rarely use credit cards and prefer cash or debit." },
+    {
+      id: "B",
+      label:
+        "I use my credit card for most purchases and pay the balance in full each month.",
+    },
+    { id: "C", label: "I occasionally carry a balance on my credit card." },
+    { id: "D", label: "I tend to spend more than I can pay off each month." },
+    { id: "E", label: "I use my credit card only for emergencies." },
   ],
 };
