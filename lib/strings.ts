@@ -1,5 +1,5 @@
 export const step1Strings = {
-  progress: "[=======                 ] 33%",
+  progress: "1 / 2",
   title: "Find the Perfect Credit Card for You!",
   question: "What's your primary goal for using a credit card?",
   options: [
@@ -12,7 +12,7 @@ export const step1Strings = {
 };
 
 export const step2Strings = {
-  progress: "[===============         ] 66%",
+  progress: "2 / 2",
   title: "Find the Perfect Credit Card for You!",
   question: "How would you describe your spending habits?",
   options: [
