@@ -1,26 +1,28 @@
 
 export const step1Strings = {
-  progress: "1 / 2",
-  title: "Find the Perfect Credit Card for You!",
-  question: "What's your primary goal for using a credit card?",
+  progress: "50%",
+  title: "Discover Your Ideal Credit Card",
+  question: "What is your primary goal for using a credit card?",
   options: [
-    { id: "A", label: "Build Credit" },
-    { id: "B", label: "Earn Rewards (Travel, Cash Back, etc.)" },
-    { id: "C", label: "Save Money on Interest" },
-    { id: "D", label: "Manage Expenses" },
-    { id: "E", label: "Large Purchase" },
+    { id: "A", label: "Building or improving my credit score" },
+    { id: "B", label: "Earning rewards on everyday purchases" },
+    { id: "C", label: "Managing and consolidating existing debt" },
+    { id: "D", label: "Making large purchases with flexible payment options" },
+    { id: "E", label: "Covering unexpected expenses" },
+    { id: "F", label: "Travel benefits and perks" },
   ],
 };
 
 export const step2Strings = {
-  progress: "2 / 2",
-  title: "Find the Perfect Credit Card for You!",
-  question: "How would you describe your spending habits?",
+  progress: "100%",
+  title: "Discover Your Ideal Credit Card",
+  question: "Which range best represents your annual income before taxes?",
   options: [
-    { id: "A", label: "I rarely use credit cards, only for emergencies." },
-    { id: "B", label: "I use credit cards for some purchases, but pay them off in full each month." },
-    { id: "C", label: "I use credit cards regularly and pay them off in full each month." },
-    { id: "D", label: "I use credit cards for most purchases and sometimes carry a balance." },
-    { id: "E", label: "I use credit cards for all purchases and carry a balance." },
+    { id: "A", label: "Less than $30,000" },
+    { id: "B", label: "$30,000 - $49,999" },
+    { id: "C", label: "$50,000 - $74,999" },
+    { id: "D", label: "$75,000 - $99,999" },
+    { id: "E", label: "$100,000 - $149,999" },
+    { id: "F", label: "$150,000 or more" },
   ],
 };
