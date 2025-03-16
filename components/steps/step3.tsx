@@ -105,7 +105,12 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
         <button
           type="button"
           onClick={onSubmit}
-          className="w-full py-3 text-sm font-medium rounded-full bg-[#8DC63F] hover:bg-[#6BA828] text-white transition-colors shadow-md"
+          disabled={!receiveMessages}
+          className={`w-full py-3 text-sm font-medium rounded-full transition-colors shadow-md ${
+            receiveMessages 
+              ? "bg-[#8DC63F] hover:bg-[#6BA828] text-white" 
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
         >
           {step3Strings.button}
         </button>
