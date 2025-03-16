@@ -36,7 +36,7 @@ export default function CreditCardForm() {
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault()
     console.log("Form submitted with data:", formData)
-    alert(formStrings.submission.success)
+    window.location.href = "https://mejoresfinanzas.com/credit-cards"
   }
 
   return (
