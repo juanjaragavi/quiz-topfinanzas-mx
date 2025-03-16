@@ -1,26 +1,26 @@
 
 export const step1Strings = {
-  progress: "Page 1 of 2",
+  progress: "1 / 2",
   title: "Find the Perfect Credit Card for You!",
-  question: "What is your main objective for getting a new credit card?",
+  question: "What's your primary goal for using a credit card?",
   options: [
     { id: "A", label: "Build Credit" },
-    { id: "B", label: "Earn Rewards (Cash Back, Points, Miles)" },
-    { id: "C", label: "Low Interest & Balance Transfers" },
-    { id: "D", label: "Big Purchase Financing" },
-    { id: "E", label: "Other" },
+    { id: "B", label: "Earn Rewards (Travel, Cash Back, etc.)" },
+    { id: "C", label: "Save Money on Interest" },
+    { id: "D", label: "Manage Expenses" },
+    { id: "E", label: "Large Purchase" },
   ],
 };
 
 export const step2Strings = {
-  progress: "Page 2 of 2",
+  progress: "2 / 2",
   title: "Find the Perfect Credit Card for You!",
   question: "How would you describe your spending habits?",
   options: [
-    { id: "A", label: "I primarily use my card for everyday purchases (groceries, gas, etc.)." },
-    { id: "B", label: "I spend a significant amount on travel-related expenses." },
-    { id: "C", label: "I have varied spending across different categories." },
-    { id: "D", label: "I mostly use my card for large, infrequent purchases." },
-    { id: "E", label: "I don't plan to use the card very often." },
+    { id: "A", label: "I rarely use credit cards, only for emergencies." },
+    { id: "B", label: "I use credit cards for some purchases, but pay them off in full each month." },
+    { id: "C", label: "I use credit cards regularly and pay them off in full each month." },
+    { id: "D", label: "I use credit cards for most purchases and sometimes carry a balance." },
+    { id: "E", label: "I use credit cards for all purchases and carry a balance." },
   ],
 };
