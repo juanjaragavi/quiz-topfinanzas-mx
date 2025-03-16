@@ -89,7 +89,7 @@ export default function CreditCardForm() {
             <a href="#" className="text-[#2E74B5]">
               {formStrings.footer.privacyLink}
             </a>
-            . {formStrings.footer.disclaimer}
+            .
           </p>
         </div>
       </div>
