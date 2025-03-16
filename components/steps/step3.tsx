@@ -1,49 +1,55 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { motion } from "framer-motion"
-import { useState } from "react"
-import { Checkbox } from "../ui/checkbox"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
-import { step3Strings } from "@/lib/constants"
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Checkbox } from "../ui/checkbox";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { step3Strings } from "@/lib/constants";
 
 interface Step3Props {
   formData: {
-    email: string
-    name: string
-    receiveMessages: boolean
-  }
+    email: string;
+    name: string;
+    receiveMessages: boolean;
+  };
   updateFormData: (
     data: Partial<{
-      email: string
-      name: string
-      receiveMessages: boolean
-    }>,
-  ) => void
-  onSubmit: () => void
+      email: string;
+      name: string;
+      receiveMessages: boolean;
+    }>
+  ) => void;
+  onSubmit: () => void;
 }
 
-export default function Step3({ formData, updateFormData, onSubmit }: Step3Props) {
-  const [email, setEmail] = useState(formData.email)
-  const [name, setName] = useState(formData.name)
-  const [receiveMessages, setReceiveMessages] = useState(formData.receiveMessages)
+export default function Step3({
+  formData,
+  updateFormData,
+  onSubmit,
+}: Step3Props) {
+  const [email, setEmail] = useState(formData.email);
+  const [name, setName] = useState(formData.name);
+  const [receiveMessages, setReceiveMessages] = useState(
+    formData.receiveMessages
+  );
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-    updateFormData({ email: e.target.value })
-  }
+    setEmail(e.target.value);
+    updateFormData({ email: e.target.value });
+  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-    updateFormData({ name: e.target.value })
-  }
+    setName(e.target.value);
+    updateFormData({ name: e.target.value });
+  };
 
   const handleCheckboxChange = (checked: boolean) => {
-    setReceiveMessages(checked)
-    updateFormData({ receiveMessages: checked })
-  }
+    setReceiveMessages(checked);
+    updateFormData({ receiveMessages: checked });
+  };
 
   return (
     <div className="space-y-4">
@@ -101,14 +107,19 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
         </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-6">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="mt-6"
+      >
         <button
           type="button"
           onClick={onSubmit}
           disabled={!receiveMessages}
           className={`w-full py-3 text-sm font-medium rounded-full transition-colors shadow-md ${
-            receiveMessages 
-              ? "bg-[#8DC63F] hover:bg-[#6BA828] text-white" 
+            receiveMessages
+              ? "bg-[#8DC63F] hover:bg-[#6BA828] text-white"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
@@ -116,5 +127,5 @@ export default function Step3({ formData, updateFormData, onSubmit }: Step3Props
         </button>
       </motion.div>
     </div>
-  )
+  );
 }
