@@ -16,7 +16,7 @@ export default function OptionButton({ id, label, selected, onClick, delay = 0 }
       type="button"
       onClick={onClick}
       className={`option-button flex items-center w-full rounded-full overflow-hidden mb-2 ${
-        selected ? "selected bg-[#2E74B5] text-white" : "bg-[#82b53b] text-white hover:bg-opacity-90"
+        selected ? "selected bg-[#2E74B5] text-white" : "bg-[#2E74B5] text-white hover:bg-opacity-90"
       }`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
