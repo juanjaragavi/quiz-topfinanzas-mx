@@ -12,12 +12,13 @@ export const formStrings = {
     completed: "!",
   },
   footer: {
-    termsText: "By signing up, I agree to receive messages and accept the",
+    termsText:
+      "By signing up, I agree to receive text messages at the phone number and email provided and I agree that I can unsubscribe from the SMS and Email list at any time. SMS message rates may apply. I also confirm that I am over 18 years old and accept the terms set out in the",
     termsLink: "Terms of Use",
     and: "and",
     privacyLink: "Privacy Policy",
     disclaimer:
-      "Message frequency varies based on quiz answers. Text HELP for help or STOP to cancel. Your data is secure and encrypted.",
+      ". I confirm that the message frequency varies according to the answers provided in the quiz and the profile created by these answers.",
   },
   submission: {
     success: "Form submitted successfully!",

@@ -40,7 +40,7 @@ export default function CreditCardForm() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[100dvh]">
+    <div className="bg-white flex flex-col h-[100dvh]">
       <div className="bg-[#2E74B5] py-3 px-4 flex justify-center -mb-8 flex-none">
         <Logo />
       </div>
@@ -58,14 +58,31 @@ export default function CreditCardForm() {
             <form onSubmit={(e) => step === totalSteps && handleSubmit(e)}>
               {step === 1 && <Step1 formData={formData} updateFormData={updateFormData} />}
               {step === 2 && <Step2 formData={formData} updateFormData={updateFormData} />}
-              {step === 3 && <Step3 formData={formData} updateFormData={updateFormData} onSubmit={handleSubmit} />}
+              {step === 3 && (
+                <>
+                  <Step3 formData={formData} updateFormData={updateFormData} onSubmit={handleSubmit} />
+                  <div className="mt-6">
+                    <p className="text-xs text-gray-600 text-justify pb-4 leading-tight">
+                      {formStrings.footer.termsText}{" "}
+                      <a href="https://onecartao.com/terms-of-use/" className="text-[#2E74B5]">
+                        {formStrings.footer.termsLink}
+                      </a>{" "}
+                      {formStrings.footer.and}{" "}
+                      <a href="https://onecartao.com/privacy-policy/" className="text-[#2E74B5]">
+                        {formStrings.footer.privacyLink}
+                      </a>
+                      {formStrings.footer.disclaimer}
+                    </p>
+                  </div>
+                </>
+              )}
             </form>
           </motion.div>
         </AnimatePresence>
       </div>
 
       <div className="p-4 flex-none bg-white border-t shadow-lg">
-        <div className="w-full max-w-xs mx-auto space-y-3 mt-2">
+        <div className="w-full space-y-3 mt-2">
           <div className="space-y-2">
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
@@ -79,18 +96,6 @@ export default function CreditCardForm() {
               {progress}{formStrings.progressBar.complete}{progress < 100 ? formStrings.progressBar.keepItUp : formStrings.progressBar.completed}
             </div>
           </div>
-
-          <p className="text-xs text-gray-600 text-justify pb-6 leading-tight">
-            {formStrings.footer.termsText}{" "}
-            <a href="#" className="text-[#2E74B5]">
-              {formStrings.footer.termsLink}
-            </a>{" "}
-            {formStrings.footer.and}{" "}
-            <a href="#" className="text-[#2E74B5]">
-              {formStrings.footer.privacyLink}
-            </a>
-            .
-          </p>
         </div>
       </div>
     </div>
