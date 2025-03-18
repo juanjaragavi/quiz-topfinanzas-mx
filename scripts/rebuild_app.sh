@@ -52,12 +52,7 @@ log_message "Installing dependencies with bun"
 sudo bun install
 check_error "Failed to install dependencies"
 
-# Step 4: Add font package
-log_message "Adding @next/font package"
-sudo bun add @next/font
-check_error "Failed to add @next/font package"
-
-# Step 5: Build the application
+# Step 4: Build the application
 log_message "Building the application"
 sudo bun run build
 check_error "Failed to build the application"
