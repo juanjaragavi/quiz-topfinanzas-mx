@@ -33,5 +33,5 @@ export const step3Strings = {
     name: "Name",
   },
   checkbox: "I agree to receive personalized messages",
-  button: "Get my first Recommendation",
+  button: "Get my First Recommendation",
 };
