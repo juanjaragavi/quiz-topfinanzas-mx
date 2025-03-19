@@ -22,6 +22,6 @@ export const step2Strings = {
     { id: "C", label: "Between $5,000 and $10,000" },
     { id: "D", label: "Between $10,000 and $15,000" },
     { id: "E", label: "Between $15,000 and $20,000" },
-    { id: "FF", label: "More than $20,000" },
+    { id: "F", label: "More than $20,000" },
   ],
 };

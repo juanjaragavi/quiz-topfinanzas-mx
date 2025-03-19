@@ -1,7 +1,7 @@
 // Constant strings used throughout the application
 
 export const metadata = {
-  title: "Credit Card Finder",
+  title: "Get your new card now!!!",
   description: "Find the perfect credit card for your needs",
 };
 

@@ -1,31 +1,33 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useState } from "react"
-import OptionButton from "../ui/option-button"
-import { step2Strings } from "@/lib/strings"
+import { motion } from "framer-motion";
+import { useState } from "react";
+import OptionButton from "../ui/option-button";
+import { step2Strings } from "@/lib/strings";
 
 interface Step2Props {
   formData: {
-    income: string
-  }
-  updateFormData: (data: { income: string }) => void
+    income: string;
+  };
+  updateFormData: (data: { income: string }) => void;
 }
 
 export default function Step2({ formData, updateFormData }: Step2Props) {
-  const [selected, setSelected] = useState(formData.income)
+  const [selected, setSelected] = useState(formData.income);
 
-  const options = step2Strings.options
+  const options = step2Strings.options;
 
   const handleSelect = (id: string) => {
-    setSelected(id)
-    updateFormData({ income: id })
-  }
+    setSelected(id);
+    updateFormData({ income: id });
+  };
 
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <div className="bg-[#B8E986] text-[#2E74B5] rounded-full py-1 px-3 inline-block mb-1 text-xs">{step2Strings.progress}</div>
+        <div className="bg-[#B8E986] text-[#2E74B5] font-semibold rounded-full py-1 px-3 inline-block mb-1 text-xs">
+          {step2Strings.progress}
+        </div>
         <h2 className="text-base font-medium">{step2Strings.title}</h2>
       </div>
 
@@ -56,5 +58,5 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
         ))}
       </motion.div>
     </div>
-  )
+  );
 }

@@ -1,43 +1,46 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import Step1 from "./steps/step1"
-import Step2 from "./steps/step2"
-import Step3 from "./steps/step3"
-import Logo from "./ui/logo"
-import { formStrings } from "@/lib/constants"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Step1 from "./steps/step1";
+import Step2 from "./steps/step2";
+import Step3 from "./steps/step3";
+import Logo from "./ui/logo";
+import { formStrings } from "@/lib/constants";
 
 export default function CreditCardForm() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     preference: "",
     income: "",
     email: "",
     name: "",
     receiveMessages: false,
-  })
+  });
 
-  const totalSteps = 3
-  const progress = Math.round(((step - 1) / (totalSteps - 1)) * 100) || 0
+  const totalSteps = 3;
+  const progress = Math.round(((step - 1) / (totalSteps - 1)) * 100) || 0;
 
   const updateFormData = (data: Partial<typeof formData>) => {
-    setFormData((prev) => ({ ...prev, ...data }))
-  }
+    setFormData((prev) => ({ ...prev, ...data }));
+  };
 
   useEffect(() => {
-    if (step < totalSteps && ((step === 1 && formData.preference) || (step === 2 && formData.income))) {
-      const timer = setTimeout(() => setStep(step + 1), 500)
-      return () => clearTimeout(timer)
+    if (
+      step < totalSteps &&
+      ((step === 1 && formData.preference) || (step === 2 && formData.income))
+    ) {
+      const timer = setTimeout(() => setStep(step + 1), 500);
+      return () => clearTimeout(timer);
     }
-  }, [formData, step])
+  }, [formData, step]);
 
   const handleSubmit = (e?: React.FormEvent) => {
-    e?.preventDefault()
-    console.log("Form submitted with data:", formData)
-    window.location.href = "https://mejoresfinanzas.com/credit-cards"
-  }
+    e?.preventDefault();
+    console.log("Form submitted with data:", formData);
+    window.location.href = "https://mejoresfinanzas.com/credit-cards";
+  };
 
   return (
     <div className="bg-white flex flex-col h-[100dvh]">
@@ -56,19 +59,33 @@ export default function CreditCardForm() {
             className="px-4 pt-10 pb-20"
           >
             <form onSubmit={(e) => step === totalSteps && handleSubmit(e)}>
-              {step === 1 && <Step1 formData={formData} updateFormData={updateFormData} />}
-              {step === 2 && <Step2 formData={formData} updateFormData={updateFormData} />}
+              {step === 1 && (
+                <Step1 formData={formData} updateFormData={updateFormData} />
+              )}
+              {step === 2 && (
+                <Step2 formData={formData} updateFormData={updateFormData} />
+              )}
               {step === 3 && (
                 <>
-                  <Step3 formData={formData} updateFormData={updateFormData} onSubmit={handleSubmit} />
+                  <Step3
+                    formData={formData}
+                    updateFormData={updateFormData}
+                    onSubmit={handleSubmit}
+                  />
                   <div className="mt-6">
                     <p className="text-xs text-gray-600 text-justify pb-4 leading-tight">
                       {formStrings.footer.termsText}{" "}
-                      <a href="https://onecartao.com/terms-of-use/" className="text-[#2E74B5]">
+                      <a
+                        href="https://onecartao.com/terms-of-use/"
+                        className="text-[#2E74B5]"
+                      >
                         {formStrings.footer.termsLink}
                       </a>{" "}
                       {formStrings.footer.and}{" "}
-                      <a href="https://onecartao.com/privacy-policy/" className="text-[#2E74B5]">
+                      <a
+                        href="https://onecartao.com/privacy-policy/"
+                        className="text-[#2E74B5]"
+                      >
                         {formStrings.footer.privacyLink}
                       </a>
                       {formStrings.footer.disclaimer}
@@ -93,11 +110,15 @@ export default function CreditCardForm() {
               />
             </div>
             <div className="text-center text-sm text-gray-600">
-              {progress}{formStrings.progressBar.complete}{progress < 100 ? formStrings.progressBar.keepItUp : formStrings.progressBar.completed}
+              {progress}
+              {formStrings.progressBar.complete}
+              {progress < 100
+                ? formStrings.progressBar.keepItUp
+                : formStrings.progressBar.completed}
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

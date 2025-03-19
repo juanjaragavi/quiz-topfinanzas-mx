@@ -54,7 +54,7 @@ export default function Step3({
   return (
     <div className="space-y-4">
       <div className="text-center mb-4">
-        <div className="bg-[#45909f] text-white rounded-full py-1 px-3 inline-block mb-1 text-xs">
+        <div className="bg-[#B8E986] text-[#2E74B5] font-semibold rounded-full py-1 px-3 inline-block mb-1 text-xs">
           {step3Strings.progress}
         </div>
         <h2 className="text-sm font-medium">{step3Strings.title}</h2>

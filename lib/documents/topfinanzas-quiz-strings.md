@@ -1,4 +1,4 @@
-# Credit Card Finder Strings
+# Get your new card now!!! Strings
 
 ## step1Strings
 
