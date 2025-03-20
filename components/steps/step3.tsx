@@ -64,58 +64,76 @@ export default function Step3({
 
   const validateEmail = (email: string): boolean => {
     if (!email) {
-      setErrors(prev => ({ ...prev, email: "El correo electrónico es obligatorio" }));
+      setErrors((prev) => ({
+        ...prev,
+        email: "El correo electrónico es obligatorio",
+      }));
       return false;
     }
 
     // Regex para validar el formato básico de correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrors(prev => ({ ...prev, email: "Por favor ingresa un correo electrónico válido" }));
+      setErrors((prev) => ({
+        ...prev,
+        email: "Por favor ingresa un correo electrónico válido",
+      }));
       return false;
     }
 
     // Validar dominios comunes en México
-    const domainPart = email.split('@')[1]?.toLowerCase();
+    const domainPart = email.split("@")[1]?.toLowerCase();
     if (domainPart) {
       // Validar dominios que parecen incompletos o inválidos
-      if (domainPart.split('.').length < 2 || domainPart.endsWith('.')) {
-        setErrors(prev => ({ ...prev, email: "El dominio del correo parece incompleto" }));
+      if (domainPart.split(".").length < 2 || domainPart.endsWith(".")) {
+        setErrors((prev) => ({
+          ...prev,
+          email: "El dominio del correo parece incompleto",
+        }));
         return false;
       }
     }
 
-    setErrors(prev => ({ ...prev, email: null }));
+    setErrors((prev) => ({ ...prev, email: null }));
     return true;
   };
 
   const validateName = (name: string): boolean => {
     if (!name.trim()) {
-      setErrors(prev => ({ ...prev, name: "El nombre es obligatorio" }));
+      setErrors((prev) => ({ ...prev, name: "El nombre es obligatorio" }));
       return false;
     }
 
     if (name.trim().length < 2) {
-      setErrors(prev => ({ ...prev, name: "El nombre debe tener al menos 2 caracteres" }));
+      setErrors((prev) => ({
+        ...prev,
+        name: "El nombre debe tener al menos 2 caracteres",
+      }));
       return false;
     }
 
-    setErrors(prev => ({ ...prev, name: null }));
+    setErrors((prev) => ({ ...prev, name: null }));
     return true;
   };
 
   const validateLastName = (lastName: string): boolean => {
     if (!lastName.trim()) {
-      setErrors(prev => ({ ...prev, lastName: "El apellido es obligatorio" }));
+      setErrors((prev) => ({
+        ...prev,
+        lastName: "El apellido es obligatorio",
+      }));
       return false;
     }
 
     if (lastName.trim().length < 2) {
-      setErrors(prev => ({ ...prev, lastName: "El apellido debe tener al menos 2 caracteres" }));
+      setErrors((prev) => ({
+        ...prev,
+        lastName: "El apellido debe tener al menos 2 caracteres",
+      }));
       return false;
     }
 
-    setErrors(prev => ({ ...prev, lastName: null }));
+    setErrors((prev) => ({ ...prev, lastName: null }));
     return true;
   };
 
@@ -144,7 +162,10 @@ export default function Step3({
 
   const validatePhone = (phoneNumber: string): boolean => {
     if (!phoneNumber) {
-      setErrors(prev => ({ ...prev, phone: "El número de teléfono es obligatorio" }));
+      setErrors((prev) => ({
+        ...prev,
+        phone: "El número de teléfono es obligatorio",
+      }));
       return false;
     }
 
@@ -153,9 +174,9 @@ export default function Step3({
     const mexicanPhoneRegex = /^\d{10}$/;
 
     if (!mexicanPhoneRegex.test(phoneNumber)) {
-      setErrors(prev => ({ 
-        ...prev, 
-        phone: "Ingresa un número de celular mexicano válido (10 dígitos)" 
+      setErrors((prev) => ({
+        ...prev,
+        phone: "Ingresa un número de celular mexicano válido (10 dígitos)",
       }));
       return false;
     }
@@ -165,8 +186,21 @@ export default function Step3({
     const firstThreeDigits = phoneNumber.substring(0, 3);
     const validLadaCodes = [
       // Mobile prefixes
-      "55", "56", "33", "81", "44", "45", "55", "56", 
-      "222", "221", "442", "477", "664", "998", "999",
+      "55",
+      "56",
+      "33",
+      "81",
+      "44",
+      "45",
+      "55",
+      "56",
+      "222",
+      "221",
+      "442",
+      "477",
+      "664",
+      "998",
+      "999",
     ];
 
     const firstTwoDigits = phoneNumber.substring(0, 2);
@@ -174,11 +208,14 @@ export default function Step3({
       !validLadaCodes.includes(firstThreeDigits) &&
       !validLadaCodes.includes(firstTwoDigits)
     ) {
-      setErrors(prev => ({ ...prev, phone: "El código LADA no parece válido para México" }));
+      setErrors((prev) => ({
+        ...prev,
+        phone: "El código LADA no parece válido para México",
+      }));
       return false;
     }
 
-    setErrors(prev => ({ ...prev, phone: null }));
+    setErrors((prev) => ({ ...prev, phone: null }));
     return true;
   };
 
@@ -191,16 +228,22 @@ export default function Step3({
 
     // Si no está marcado el checkbox de recibir mensajes
     if (!receiveMessages) {
-      setErrors(prev => ({ 
-        ...prev, 
-        general: "Debes aceptar recibir información para continuar" 
+      setErrors((prev) => ({
+        ...prev,
+        general: "Debes aceptar recibir información para continuar",
       }));
       return false;
     } else {
-      setErrors(prev => ({ ...prev, general: null }));
+      setErrors((prev) => ({ ...prev, general: null }));
     }
 
-    return isEmailValid && isNameValid && isLastNameValid && isPhoneValid && receiveMessages;
+    return (
+      isEmailValid &&
+      isNameValid &&
+      isLastNameValid &&
+      isPhoneValid &&
+      receiveMessages
+    );
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -242,8 +285,8 @@ export default function Step3({
             onBlur={() => validateEmail(email)}
             required
             className={`h-9 text-sm ${
-              errors.email 
-                ? "border-red-500 focus-visible:ring-red-500" 
+              errors.email
+                ? "border-red-500 focus-visible:ring-red-500"
                 : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
             }`}
             placeholder="ejemplo@correo.com"
@@ -268,8 +311,8 @@ export default function Step3({
             onBlur={() => validateName(name)}
             required
             className={`h-9 text-sm ${
-              errors.name 
-                ? "border-red-500 focus-visible:ring-red-500" 
+              errors.name
+                ? "border-red-500 focus-visible:ring-red-500"
                 : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
             }`}
             placeholder="Tu nombre"
@@ -299,8 +342,8 @@ export default function Step3({
             onBlur={() => validateLastName(lastName)}
             required
             className={`h-9 text-sm ${
-              errors.lastName 
-                ? "border-red-500 focus-visible:ring-red-500" 
+              errors.lastName
+                ? "border-red-500 focus-visible:ring-red-500"
                 : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
             }`}
             placeholder="Tu apellido"
@@ -330,8 +373,8 @@ export default function Step3({
             onBlur={() => validatePhone(phone)}
             required
             className={`h-9 text-sm ${
-              errors.phone 
-                ? "border-red-500 focus-visible:ring-red-500" 
+              errors.phone
+                ? "border-red-500 focus-visible:ring-red-500"
                 : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
             }`}
             placeholder="10 dígitos (ej. 5512345678)"
@@ -372,7 +415,7 @@ export default function Step3({
             {errors.general}
           </p>
         )}
-        
+
         <button
           type="button"
           onClick={handleFormSubmit}
