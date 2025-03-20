@@ -27,7 +27,7 @@ interface Step3Props {
       receiveMessages: boolean;
     }>
   ) => void;
-  onSubmit: () => void;
+  onSubmit: (e?: React.FormEvent) => void;
   handleLastNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   lastName: string;
@@ -48,20 +48,168 @@ export default function Step3({
   const [receiveMessages, setReceiveMessages] = useState(
     formData.receiveMessages
   );
+  const [errors, setErrors] = useState<{
+    email: string | null;
+    name: string | null;
+    lastName: string | null;
+    phone: string | null;
+    general: string | null;
+  }>({
+    email: null,
+    name: null,
+    lastName: null,
+    phone: null,
+    general: null,
+  });
+
+  const validateEmail = (email: string): boolean => {
+    if (!email) {
+      setErrors(prev => ({ ...prev, email: "El correo electrónico es obligatorio" }));
+      return false;
+    }
+
+    // Regex para validar el formato básico de correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrors(prev => ({ ...prev, email: "Por favor ingresa un correo electrónico válido" }));
+      return false;
+    }
+
+    // Validar dominios comunes en México
+    const domainPart = email.split('@')[1]?.toLowerCase();
+    if (domainPart) {
+      // Validar dominios que parecen incompletos o inválidos
+      if (domainPart.split('.').length < 2 || domainPart.endsWith('.')) {
+        setErrors(prev => ({ ...prev, email: "El dominio del correo parece incompleto" }));
+        return false;
+      }
+    }
+
+    setErrors(prev => ({ ...prev, email: null }));
+    return true;
+  };
+
+  const validateName = (name: string): boolean => {
+    if (!name.trim()) {
+      setErrors(prev => ({ ...prev, name: "El nombre es obligatorio" }));
+      return false;
+    }
+
+    if (name.trim().length < 2) {
+      setErrors(prev => ({ ...prev, name: "El nombre debe tener al menos 2 caracteres" }));
+      return false;
+    }
+
+    setErrors(prev => ({ ...prev, name: null }));
+    return true;
+  };
+
+  const validateLastName = (lastName: string): boolean => {
+    if (!lastName.trim()) {
+      setErrors(prev => ({ ...prev, lastName: "El apellido es obligatorio" }));
+      return false;
+    }
+
+    if (lastName.trim().length < 2) {
+      setErrors(prev => ({ ...prev, lastName: "El apellido debe tener al menos 2 caracteres" }));
+      return false;
+    }
+
+    setErrors(prev => ({ ...prev, lastName: null }));
+    return true;
+  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    updateFormData({ email: e.target.value });
+    const value = e.target.value;
+    setEmail(value);
+    updateFormData({ email: value });
+    if (value.length > 5) {
+      validateEmail(value);
+    }
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-    updateFormData({ name: e.target.value });
+    const value = e.target.value;
+    setName(value);
+    updateFormData({ name: value });
+    if (value.length > 0) {
+      validateName(value);
+    }
   };
 
   const handleCheckboxChange = (checked: boolean) => {
     setReceiveMessages(checked);
     updateFormData({ receiveMessages: checked });
+  };
+
+  const validatePhone = (phoneNumber: string): boolean => {
+    if (!phoneNumber) {
+      setErrors(prev => ({ ...prev, phone: "El número de teléfono es obligatorio" }));
+      return false;
+    }
+
+    // Mexican phone numbers should be 10 digits
+    // This regex checks for 10 consecutive digits
+    const mexicanPhoneRegex = /^\d{10}$/;
+
+    if (!mexicanPhoneRegex.test(phoneNumber)) {
+      setErrors(prev => ({ 
+        ...prev, 
+        phone: "Ingresa un número de celular mexicano válido (10 dígitos)" 
+      }));
+      return false;
+    }
+
+    // Check for common Mexican LADA (area) codes
+    // First 2-3 digits of mobile numbers often start with these
+    const firstThreeDigits = phoneNumber.substring(0, 3);
+    const validLadaCodes = [
+      // Mobile prefixes
+      "55", "56", "33", "81", "44", "45", "55", "56", 
+      "222", "221", "442", "477", "664", "998", "999",
+    ];
+
+    const firstTwoDigits = phoneNumber.substring(0, 2);
+    if (
+      !validLadaCodes.includes(firstThreeDigits) &&
+      !validLadaCodes.includes(firstTwoDigits)
+    ) {
+      setErrors(prev => ({ ...prev, phone: "El código LADA no parece válido para México" }));
+      return false;
+    }
+
+    setErrors(prev => ({ ...prev, phone: null }));
+    return true;
+  };
+
+  const validateForm = (): boolean => {
+    // Validar todos los campos
+    const isEmailValid = validateEmail(email);
+    const isNameValid = validateName(name);
+    const isLastNameValid = validateLastName(lastName);
+    const isPhoneValid = validatePhone(phone);
+
+    // Si no está marcado el checkbox de recibir mensajes
+    if (!receiveMessages) {
+      setErrors(prev => ({ 
+        ...prev, 
+        general: "Debes aceptar recibir información para continuar" 
+      }));
+      return false;
+    } else {
+      setErrors(prev => ({ ...prev, general: null }));
+    }
+
+    return isEmailValid && isNameValid && isLastNameValid && isPhoneValid && receiveMessages;
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validar todo el formulario
+    if (validateForm()) {
+      onSubmit();
+    }
   };
 
   return (
@@ -91,9 +239,21 @@ export default function Step3({
             type="email"
             value={email}
             onChange={handleEmailChange}
+            onBlur={() => validateEmail(email)}
             required
-            className="h-9 text-sm border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            className={`h-9 text-sm ${
+              errors.email 
+                ? "border-red-500 focus-visible:ring-red-500" 
+                : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            }`}
+            placeholder="ejemplo@correo.com"
+            aria-describedby="email-error"
           />
+          {errors.email && (
+            <p id="email-error" className="text-xs text-red-500 mt-1">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div className="space-y-1.5">
@@ -105,9 +265,21 @@ export default function Step3({
             type="text"
             value={name}
             onChange={handleNameChange}
+            onBlur={() => validateName(name)}
             required
-            className="h-9 text-sm border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            className={`h-9 text-sm ${
+              errors.name 
+                ? "border-red-500 focus-visible:ring-red-500" 
+                : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            }`}
+            placeholder="Tu nombre"
+            aria-describedby="name-error"
           />
+          {errors.name && (
+            <p id="name-error" className="text-xs text-red-500 mt-1">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div className="space-y-1.5">
@@ -118,10 +290,27 @@ export default function Step3({
             id="lastName"
             type="text"
             value={lastName}
-            onChange={handleLastNameChange}
+            onChange={(e) => {
+              handleLastNameChange(e);
+              if (lastName.length > 0) {
+                validateLastName(e.target.value);
+              }
+            }}
+            onBlur={() => validateLastName(lastName)}
             required
-            className="h-9 text-sm border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            className={`h-9 text-sm ${
+              errors.lastName 
+                ? "border-red-500 focus-visible:ring-red-500" 
+                : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            }`}
+            placeholder="Tu apellido"
+            aria-describedby="lastName-error"
           />
+          {errors.lastName && (
+            <p id="lastName-error" className="text-xs text-red-500 mt-1">
+              {errors.lastName}
+            </p>
+          )}
         </div>
 
         <div className="space-y-1.5">
@@ -132,10 +321,28 @@ export default function Step3({
             id="phone"
             type="tel"
             value={phone}
-            onChange={handlePhoneChange}
+            onChange={(e) => {
+              handlePhoneChange(e);
+              if (phone.length > 2) {
+                validatePhone(e.target.value);
+              }
+            }}
+            onBlur={() => validatePhone(phone)}
             required
-            className="h-9 text-sm border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            className={`h-9 text-sm ${
+              errors.phone 
+                ? "border-red-500 focus-visible:ring-red-500" 
+                : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
+            }`}
+            placeholder="10 dígitos (ej. 5512345678)"
+            maxLength={10}
+            aria-describedby="phone-error"
           />
+          {errors.phone && (
+            <p id="phone-error" className="text-xs text-red-500 mt-1">
+              {errors.phone}
+            </p>
+          )}
         </div>
 
         <div className="flex items-start space-x-2">
@@ -160,9 +367,15 @@ export default function Step3({
         transition={{ delay: 0.4 }}
         className="mt-6"
       >
+        {errors.general && (
+          <p className="text-xs text-red-500 mt-2 text-center">
+            {errors.general}
+          </p>
+        )}
+        
         <button
           type="button"
-          onClick={onSubmit}
+          onClick={handleFormSubmit}
           disabled={!receiveMessages}
           className={`w-full py-3 text-sm font-medium rounded-full transition-colors shadow-md ${
             receiveMessages

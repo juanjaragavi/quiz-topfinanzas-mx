@@ -1,0 +1,13 @@
+{
+  "globalDependencies": [".env", "tsconfig.json", "next.config.mjs"],
+  "globalEnv": ["NODE_ENV"],
+  "cacheFolder": ".turbo/cache",
+  "cliOptions": {
+    "logLevel": "info",
+    "experimentalCache": true
+  },
+  "progressReport": true,
+  "remoteCache": {
+    "enabled": false
+  }
+}
