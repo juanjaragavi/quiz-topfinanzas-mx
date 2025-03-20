@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import OptionButton from "../ui/option-button";
 import { step2Strings } from "@/lib/strings";
+import ProgressIndicator from "../ProgressIndicator";
+import VisitorCounter from "../VisitorCounter";
 
 interface Step2Props {
   formData: {
@@ -24,15 +26,15 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
 
   return (
     <div className="space-y-4">
+      <ProgressIndicator step={2} />
       <div className="text-center">
-        <div className="bg-[#B8E986] text-[#2E74B5] font-semibold rounded-full py-1 px-3 inline-block mb-1 text-xs">
-          {step2Strings.progress}
-        </div>
-        <h2 className="text-base font-medium">{step2Strings.title}</h2>
+        <h2 className="text-md font-bold text-center text-gray-950">
+          {step2Strings.title}
+        </h2>
       </div>
 
       <motion.h1
-        className="text-xl font-bold text-center text-[#2E74B5]"
+        className="text-2xl font-bold text-center text-[#2E74B5]"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -57,6 +59,17 @@ export default function Step2({ formData, updateFormData }: Step2Props) {
           />
         ))}
       </motion.div>
+
+      <div className="mt-10">
+        <div className="flex justify-center mb-4">
+          <div className="rounded-full bg-[#2E74B5] text-white px-6 py-2 shadow-md">
+            <VisitorCounter />
+          </div>
+        </div>
+        <p className="text-center text-xs text-gray-500">
+          © Top Networks Inc. 2025
+        </p>
+      </div>
     </div>
   );
 }

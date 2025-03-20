@@ -7,8 +7,8 @@ export const metadata = {
 
 export const formStrings = {
   progressBar: {
-    complete: "% complete",
-    keepItUp: ", keep it up!",
+    complete: "% completado",
+    keepItUp: ", ¡sigue así!",
     completed: "!",
   },
   footer: {
@@ -18,7 +18,7 @@ export const formStrings = {
     and: "and",
     privacyLink: "Privacy Policy",
     disclaimer:
-      ". I confirm that the message frequency varies according to the answers provided in the quiz and the profile created by these answers.",
+      ". Importante: revisa que tu correo esté escrito correctamente para poder enviarte la información que deseas",
   },
   submission: {
     success: "Form submitted successfully!",
@@ -26,12 +26,11 @@ export const formStrings = {
 };
 
 export const step3Strings = {
-  progress: "Almost There!",
-  title: "Not long! Enter your data to find your result",
+  title: "¡Excelente!",
   fields: {
-    email: "Email",
-    name: "Name",
+    email: "Correo",
+    name: "Nombre",
   },
-  checkbox: "I agree to receive personalized messages",
-  button: "Get my First Recommendation",
+  checkbox: "Acepto políticas de datos y términos y condiciones acá",
+  button: "VER OPCIONES DE TARJETAS",
 };

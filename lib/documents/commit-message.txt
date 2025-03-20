@@ -1,0 +1,15 @@
+refactor(ui): Update UI to match Mexico Quiz interface
+
+This commit includes several UI changes to make our quiz interface visually identical to the Mexico Quiz version:
+
+- Refactored all Step and Credit Card Form components with updated text content
+- Fixed VisitorCounter component styling and placement
+  - Styled as a blue rounded badge with white text on all steps
+  - Removed duplicate counter that was appearing at the bottom
+- Added "Importante:" warning text with orange highlight
+- Updated copyright information to use 2025 as the current year
+- Added copyright text to all steps for consistency
+- Replaced English text in blue container with Spanish equivalents
+- Adjusted styling throughout to match the Mexico Quiz visual design
+
+These changes ensure our UI is visually consistent with the Mexico Quiz while maintaining the same underlying functionality.

@@ -8,6 +8,7 @@ import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Logo from "./ui/logo";
 import { formStrings } from "@/lib/constants";
+import VisitorCounter from "@/components/VisitorCounter";
 
 export default function CreditCardForm() {
   const [step, setStep] = useState(1);
@@ -16,8 +17,13 @@ export default function CreditCardForm() {
     income: "",
     email: "",
     name: "",
+    lastName: "",
+    phone: "",
     receiveMessages: false,
   });
+
+  const [lastName, setLastName] = useState(formData.lastName);
+  const [phone, setPhone] = useState(formData.phone);
 
   const totalSteps = 3;
   const progress = Math.round(((step - 1) / (totalSteps - 1)) * 100) || 0;
@@ -40,6 +46,16 @@ export default function CreditCardForm() {
     e?.preventDefault();
     console.log("Form submitted with data:", formData);
     window.location.href = "https://mejoresfinanzas.com/credit-cards";
+  };
+
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLastName(e.target.value);
+    updateFormData({ lastName: e.target.value });
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+    updateFormData({ phone: e.target.value });
   };
 
   return (
@@ -71,26 +87,11 @@ export default function CreditCardForm() {
                     formData={formData}
                     updateFormData={updateFormData}
                     onSubmit={handleSubmit}
+                    handleLastNameChange={handleLastNameChange}
+                    handlePhoneChange={handlePhoneChange}
+                    lastName={lastName}
+                    phone={phone}
                   />
-                  <div className="mt-6">
-                    <p className="text-xs text-gray-600 text-justify pb-4 leading-tight">
-                      {formStrings.footer.termsText}{" "}
-                      <a
-                        href="https://onecartao.com/terms-of-use/"
-                        className="text-[#2E74B5]"
-                      >
-                        {formStrings.footer.termsLink}
-                      </a>{" "}
-                      {formStrings.footer.and}{" "}
-                      <a
-                        href="https://onecartao.com/privacy-policy/"
-                        className="text-[#2E74B5]"
-                      >
-                        {formStrings.footer.privacyLink}
-                      </a>
-                      {formStrings.footer.disclaimer}
-                    </p>
-                  </div>
                 </>
               )}
             </form>
