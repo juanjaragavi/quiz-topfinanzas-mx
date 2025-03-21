@@ -1,18 +1,16 @@
-feat(form): Add comprehensive form validation and optimize development
+docs(readme): Create comprehensive project documentation
 
-This commit includes major improvements to form validation and development workflow:
+This commit updates the project README.md with detailed documentation:
 
-- Replaced div with proper form structure in Step3 component
-- Added comprehensive email validation with Spanish error messages
-- Implemented robust validation for all fields (name, lastName, phone)
-- Added Mexican phone number validation with LADA code checking 
-- Created a centralized error state management system for all form fields
-- Added visual indicators for validation state with proper error styling
-- Fixed form submission process for better UX and accessibility
-- Added real-time validation as users type with appropriate feedback
-- Removed deprecated @next/font package in favor of built-in next/font
-- Added Turbopack configuration for faster local development
-- Created documentation for Turbopack in TURBOPACK.md
-- Fixed HTML nesting issues to resolve hydration errors
+- Added comprehensive overview of the project functionality and purpose
+- Created detailed sections explaining the multi-step form process
+- Documented all key features with emoji markers for improved readability
+- Added complete technology stack breakdown (Next.js, React, Tailwind, etc.)
+- Included visual project structure diagram for better code navigation
+- Documented user flow from initial view to form submission
+- Added detailed explanation of form validation features
+- Included development setup instructions and prerequisites
+- Improved visual presentation with badges and emojis throughout
+- Added license and copyright information
 
-These changes significantly improve the form user experience with culturally appropriate Spanish error messages while also enhancing the development workflow with faster rebuilds using Turbopack.
+This documentation provides a clear overview of the Quiz TopFinanzas credit card recommendation application, making it easier for new contributors to understand the project structure and features.
