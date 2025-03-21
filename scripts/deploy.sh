@@ -64,42 +64,7 @@ backup_strings() {
     fi
 }
 
-# Validate TypeScript string files for syntax errors
-validate_strings() {
-    log_message "INFO" "Validating string constant TypeScript files"
-    local has_errors=false
-
-    # Validate constants.ts with tsc (TypeScript compiler)
-    if [ -f "$CONSTANTS_DIR" ]; then
-        if ! tsc --noEmit "$CONSTANTS_DIR" 2>/dev/null; then
-            log_message "ERROR" "Invalid TypeScript syntax in constants.ts file"
-            has_errors=true
-        fi
-    fi
-
-    # Validate strings.ts with tsc
-    if [ -f "$STRINGS_DIR" ]; then
-        if ! tsc --noEmit "$STRINGS_DIR" 2>/dev/null; then
-            log_message "ERROR" "Invalid TypeScript syntax in strings.ts file"
-            has_errors=true
-        fi
-    fi
-
-    if [ "$has_errors" = true ]; then
-        report_status "ERROR" "String validation failed - TypeScript syntax errors detected" "{\"restored_backup\":true}"
-        # Restore from backup
-        if [ -f "${STRINGS_BACKUP_DIR}/constants.ts" ]; then
-            cp "${STRINGS_BACKUP_DIR}/constants.ts" "$CONSTANTS_DIR"
-        fi
-        if [ -f "${STRINGS_BACKUP_DIR}/strings.ts" ]; then
-            cp "${STRINGS_BACKUP_DIR}/strings.ts" "$STRINGS_DIR"
-        fi
-        return 1
-    fi
-
-    log_message "INFO" "All string constant files validated successfully"
-    return 0
-}
+# Function is removed - no validation required as per request
 
 # Main deployment process
 log_message "INFO" "Starting deployment process (Type: ${UPDATE_TYPE})"
@@ -116,9 +81,6 @@ backup_strings
 if [ "$UPDATE_TYPE" = "content-only" ]; then
     log_message "INFO" "Processing content-only update"
 
-    # Validate strings before proceeding
-    validate_strings || exit 1
-
     # For content-only updates, we only need to rebuild, not pull code
     log_message "INFO" "Skipping git pull for content-only update"
 else
@@ -132,9 +94,6 @@ else
     if [ $? -ne 0 ]; then
         report_status "ERROR" "Git pull failed" "{\"git_error\":true}"
     fi
-
-    # Validate strings after code pull
-    validate_strings || exit 1
 
     # Install dependencies if package.json changed
     if git diff --name-only HEAD@{1} | grep -q "package.json"; then

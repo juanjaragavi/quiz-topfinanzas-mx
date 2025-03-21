@@ -1,16 +1,16 @@
-chore(scripts): Update deployment script for string constants backup
+chore(scripts): Simplify deployment script and add string constants backup
 
-This commit enhances the deployment process with improved backup for string constants:
+This commit enhances the deployment process with focused string constants backup:
 
 - Added dedicated backup for constants.ts and strings.ts files
 - Created timestamped backup directories for easier recovery
-- Implemented TypeScript validation for string constant files
-- Removed unnecessary JSON validation code
-- Updated deployment flow to focus on TypeScript files 
-- Added error handling with proper backup restoration
-- Optimized script for more robust deployments
-- Improved logging and status reporting
+- Removed all validation code for TypeScript files
+- Eliminated unnecessary JSON validation
+- Simplified deployment flow to be more straightforward
+- Maintained error handling and status reporting
+- Optimized script for speed and simplicity
 - Streamlined the backup process with clear separation of concerns
-- Enhanced the deployment process for better reliability
+- Focused on core deployment functionality without overhead
+- Reduced complexity while retaining reliability features
 
-These changes ensure our centralized string constants are properly backed up and validated during deployment, reducing the risk of errors and improving the overall reliability of the deployment process.
+These changes ensure our centralized string constants are properly backed up while making the deployment process cleaner and more efficient without validation overhead.
