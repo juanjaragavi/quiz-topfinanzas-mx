@@ -23,3 +23,24 @@ export const step2Strings = {
     { id: "F", label: "Más de $60,000 MXN" },
   ],
 };
+
+export const step3Texts = {
+  subtitle: {
+    firstPart:
+      "Ingresa tus datos y en un instante accederás a la tarjeta de crédito",
+    highlight: "más adecuada para ti",
+  },
+  validationErrors: {
+    emailRequired: "El correo electrónico es obligatorio",
+    emailInvalid: "Por favor ingresa un correo electrónico válido",
+    emailDomainIncomplete: "El dominio del correo parece incompleto",
+    nameRequired: "El nombre es obligatorio",
+    nameLength: "El nombre debe tener al menos 2 caracteres",
+    lastNameRequired: "El apellido es obligatorio",
+    lastNameLength: "El apellido debe tener al menos 2 caracteres",
+    phoneRequired: "El número de teléfono es obligatorio",
+    phoneFormat: "Ingresa un número de celular mexicano válido (10 dígitos)",
+    phoneLada: "El código LADA no parece válido para México",
+    acceptTerms: "Debes aceptar recibir información para continuar",
+  },
+};

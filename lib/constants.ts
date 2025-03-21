@@ -5,6 +5,15 @@ export const metadata = {
   description: "Find the perfect credit card for your needs",
 };
 
+export const commonStrings = {
+  copyright: "© Top Networks Inc. 2025",
+  important: {
+    prefix: "Importante:",
+    emailVerification:
+      "revisa que tu correo esté escrito correctamente para poder enviarte la información que deseas",
+  },
+};
+
 export const formStrings = {
   progressBar: {
     complete: "% completado",
@@ -30,7 +39,15 @@ export const step3Strings = {
   fields: {
     email: "Correo",
     name: "Nombre",
+    lastName: "Apellido",
+    phone: "Celular",
   },
   checkbox: "Acepto políticas de datos y términos y condiciones",
   button: "VER OPCIONES DE TARJETAS",
+  placeholders: {
+    email: "ejemplo@correo.com",
+    name: "Tu nombre",
+    lastName: "Tu apellido",
+    phone: "10 dígitos (ej. 5512345678)",
+  },
 };

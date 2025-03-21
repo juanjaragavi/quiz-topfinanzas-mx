@@ -1,16 +1,16 @@
-docs(readme): Create comprehensive project documentation
+refactor(strings): Move hardcoded text to centralized string constants
 
-This commit updates the project README.md with detailed documentation:
+This commit refactors components to use centralized string constants:
 
-- Added comprehensive overview of the project functionality and purpose
-- Created detailed sections explaining the multi-step form process
-- Documented all key features with emoji markers for improved readability
-- Added complete technology stack breakdown (Next.js, React, Tailwind, etc.)
-- Included visual project structure diagram for better code navigation
-- Documented user flow from initial view to form submission
-- Added detailed explanation of form validation features
-- Included development setup instructions and prerequisites
-- Improved visual presentation with badges and emojis throughout
-- Added license and copyright information
+- Created commonStrings object in constants.ts for shared texts (copyright, important notices)
+- Added step3Texts object in strings.ts with subtitle content and validation messages
+- Updated step1, step2, and step3 components to reference centralized strings
+- Extracted all validation error messages to reusable string constants
+- Structured string constants for better organization and maintainability
+- Separated UI text from component logic for easier maintenance
+- Prepared codebase for potential future internationalization
+- Improved consistency of text across components
+- Enhanced readability by removing inline hardcoded text
+- Added better semantic structure for form validation messages
 
-This documentation provides a clear overview of the Quiz TopFinanzas credit card recommendation application, making it easier for new contributors to understand the project structure and features.
+These changes improve the maintainability of the application by centralizing all text content, making it easier to update text without modifying component logic, and laying groundwork for potential localization.

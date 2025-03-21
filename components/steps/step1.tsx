@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import OptionButton from "../ui/option-button";
 import { step1Strings } from "@/lib/strings";
+import { commonStrings } from "@/lib/constants";
 import ProgressIndicator from "../ProgressIndicator";
 import VisitorCounter from "../VisitorCounter";
 
@@ -67,7 +68,7 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
           </div>
         </div>
         <p className="text-center text-xs text-gray-500">
-          © Top Networks Inc. 2025
+          {commonStrings.copyright}
         </p>
       </div>
     </div>

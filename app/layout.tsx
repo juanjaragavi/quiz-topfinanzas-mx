@@ -14,7 +14,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: metadataStrings.title,
   description: metadataStrings.description,
-  generator: "v0.dev",
+  generator: "TopNetworks Inc.",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="es-MX">
       <body className={`${poppins.variable} font-poppins`}>{children}</body>
     </html>
   );

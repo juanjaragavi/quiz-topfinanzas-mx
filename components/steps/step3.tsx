@@ -7,7 +7,8 @@ import { useState } from "react";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { step3Strings } from "@/lib/constants";
+import { step3Strings, commonStrings } from "@/lib/constants";
+import { step3Texts } from "@/lib/strings";
 import VisitorCounter from "../VisitorCounter";
 
 interface Step3Props {
@@ -66,7 +67,7 @@ export default function Step3({
     if (!email) {
       setErrors((prev) => ({
         ...prev,
-        email: "El correo electrónico es obligatorio",
+        email: step3Texts.validationErrors.emailRequired,
       }));
       return false;
     }
@@ -76,7 +77,7 @@ export default function Step3({
     if (!emailRegex.test(email)) {
       setErrors((prev) => ({
         ...prev,
-        email: "Por favor ingresa un correo electrónico válido",
+        email: step3Texts.validationErrors.emailInvalid,
       }));
       return false;
     }
@@ -88,7 +89,7 @@ export default function Step3({
       if (domainPart.split(".").length < 2 || domainPart.endsWith(".")) {
         setErrors((prev) => ({
           ...prev,
-          email: "El dominio del correo parece incompleto",
+          email: step3Texts.validationErrors.emailDomainIncomplete,
         }));
         return false;
       }
@@ -100,14 +101,17 @@ export default function Step3({
 
   const validateName = (name: string): boolean => {
     if (!name.trim()) {
-      setErrors((prev) => ({ ...prev, name: "El nombre es obligatorio" }));
+      setErrors((prev) => ({
+        ...prev,
+        name: step3Texts.validationErrors.nameRequired,
+      }));
       return false;
     }
 
     if (name.trim().length < 2) {
       setErrors((prev) => ({
         ...prev,
-        name: "El nombre debe tener al menos 2 caracteres",
+        name: step3Texts.validationErrors.nameLength,
       }));
       return false;
     }
@@ -120,7 +124,7 @@ export default function Step3({
     if (!lastName.trim()) {
       setErrors((prev) => ({
         ...prev,
-        lastName: "El apellido es obligatorio",
+        lastName: step3Texts.validationErrors.lastNameRequired,
       }));
       return false;
     }
@@ -128,7 +132,7 @@ export default function Step3({
     if (lastName.trim().length < 2) {
       setErrors((prev) => ({
         ...prev,
-        lastName: "El apellido debe tener al menos 2 caracteres",
+        lastName: step3Texts.validationErrors.lastNameLength,
       }));
       return false;
     }
@@ -164,7 +168,7 @@ export default function Step3({
     if (!phoneNumber) {
       setErrors((prev) => ({
         ...prev,
-        phone: "El número de teléfono es obligatorio",
+        phone: step3Texts.validationErrors.phoneRequired,
       }));
       return false;
     }
@@ -176,7 +180,7 @@ export default function Step3({
     if (!mexicanPhoneRegex.test(phoneNumber)) {
       setErrors((prev) => ({
         ...prev,
-        phone: "Ingresa un número de celular mexicano válido (10 dígitos)",
+        phone: step3Texts.validationErrors.phoneFormat,
       }));
       return false;
     }
@@ -210,7 +214,7 @@ export default function Step3({
     ) {
       setErrors((prev) => ({
         ...prev,
-        phone: "El código LADA no parece válido para México",
+        phone: step3Texts.validationErrors.phoneLada,
       }));
       return false;
     }
@@ -230,7 +234,7 @@ export default function Step3({
     if (!receiveMessages) {
       setErrors((prev) => ({
         ...prev,
-        general: "Debes aceptar recibir información para continuar",
+        general: step3Texts.validationErrors.acceptTerms,
       }));
       return false;
     } else {
@@ -262,8 +266,10 @@ export default function Step3({
           {step3Strings.title}
         </h2>
         <p className="text-xl leading-tight font-bold text-center text-[#2E74B5]">
-          Ingresa tus datos y en un instante accederás a la tarjeta de crédito{" "}
-          <span className="text-[#4A8BC5]">más adecuada para ti</span>
+          {step3Texts.subtitle.firstPart}{" "}
+          <span className="text-[#4A8BC5]">
+            {step3Texts.subtitle.highlight}
+          </span>
         </p>
       </div>
 
@@ -437,11 +443,12 @@ export default function Step3({
           </div>
         </div>
         <p className="text-center text-sm">
-          <span className="font-bold text-[#FF8C00]">Importante:</span> revisa
-          que tu correo esté escrito correctamente para poder enviarte la
-          información que deseas
+          <span className="font-bold text-[#FF8C00]">
+            {commonStrings.important.prefix}
+          </span>{" "}
+          {commonStrings.important.emailVerification}
         </p>
-        <p className="text-center text-xs mt-2">© Top Networks Inc. 2025</p>
+        <p className="text-center text-xs mt-2">{commonStrings.copyright}</p>
       </div>
     </div>
   );
