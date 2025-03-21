@@ -8,7 +8,6 @@ import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Logo from "./ui/logo";
 import { formStrings } from "@/lib/constants";
-import VisitorCounter from "@/components/VisitorCounter";
 
 export default function CreditCardForm() {
   const [step, setStep] = useState(1);

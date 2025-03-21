@@ -34,7 +34,7 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
       </div>
 
       <motion.h1
-        className="text-2xl font-bold text-center text-[#2E74B5]"
+        className="text-xl leading-tight font-bold text-center text-[#2E74B5]"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}

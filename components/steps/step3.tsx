@@ -261,7 +261,7 @@ export default function Step3({
         <h2 className="text-xl font-bold text-center text-gray-950">
           {step3Strings.title}
         </h2>
-        <p className="text-2xl font-bold text-center text-[#2E74B5]">
+        <p className="text-xl leading-tight font-bold text-center text-[#2E74B5]">
           Ingresa tus datos y en un instante accederás a la tarjeta de crédito{" "}
           <span className="text-[#4A8BC5]">más adecuada para ti</span>
         </p>

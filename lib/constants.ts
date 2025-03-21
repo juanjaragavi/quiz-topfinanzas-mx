@@ -31,6 +31,6 @@ export const step3Strings = {
     email: "Correo",
     name: "Nombre",
   },
-  checkbox: "Acepto políticas de datos y términos y condiciones acá",
+  checkbox: "Acepto políticas de datos y términos y condiciones",
   button: "VER OPCIONES DE TARJETAS",
 };
