@@ -403,7 +403,10 @@ export default function Step3({
           />
           <Label htmlFor="receiveMessages" className="text-xs">
             {step3Strings.checkbox}{" "}
-            <a href="#" className="underline">
+            <a
+              href="https://topfinanzas.com/mx/politica-privacidad"
+              className="underline"
+            >
               acá
             </a>
           </Label>

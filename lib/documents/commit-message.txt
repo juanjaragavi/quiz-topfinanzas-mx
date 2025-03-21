@@ -1,16 +1,16 @@
-refactor(strings): Move hardcoded text to centralized string constants
+chore(scripts): Update deployment script for string constants backup
 
-This commit refactors components to use centralized string constants:
+This commit enhances the deployment process with improved backup for string constants:
 
-- Created commonStrings object in constants.ts for shared texts (copyright, important notices)
-- Added step3Texts object in strings.ts with subtitle content and validation messages
-- Updated step1, step2, and step3 components to reference centralized strings
-- Extracted all validation error messages to reusable string constants
-- Structured string constants for better organization and maintainability
-- Separated UI text from component logic for easier maintenance
-- Prepared codebase for potential future internationalization
-- Improved consistency of text across components
-- Enhanced readability by removing inline hardcoded text
-- Added better semantic structure for form validation messages
+- Added dedicated backup for constants.ts and strings.ts files
+- Created timestamped backup directories for easier recovery
+- Implemented TypeScript validation for string constant files
+- Removed unnecessary JSON validation code
+- Updated deployment flow to focus on TypeScript files 
+- Added error handling with proper backup restoration
+- Optimized script for more robust deployments
+- Improved logging and status reporting
+- Streamlined the backup process with clear separation of concerns
+- Enhanced the deployment process for better reliability
 
-These changes improve the maintainability of the application by centralizing all text content, making it easier to update text without modifying component logic, and laying groundwork for potential localization.
+These changes ensure our centralized string constants are properly backed up and validated during deployment, reducing the risk of errors and improving the overall reliability of the deployment process.
