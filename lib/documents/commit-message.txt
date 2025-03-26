@@ -1,16 +1,16 @@
-chore(scripts): Simplify deployment script and add string constants backup
+feat(analytics): Implement GTM and UTM parameter tracking
 
-This commit enhances the deployment process with focused string constants backup:
+This commit adds comprehensive analytics tracking capabilities:
 
-- Added dedicated backup for constants.ts and strings.ts files
-- Created timestamped backup directories for easier recovery
-- Removed all validation code for TypeScript files
-- Eliminated unnecessary JSON validation
-- Simplified deployment flow to be more straightforward
-- Maintained error handling and status reporting
-- Optimized script for speed and simplicity
-- Streamlined the backup process with clear separation of concerns
-- Focused on core deployment functionality without overhead
-- Reduced complexity while retaining reliability features
+- Integrated Google Tag Manager (GTM-MR76NXR3) following Next.js App Router best practices
+- Created dedicated GoogleTagManager component with Script and NoScript elements
+- Implemented UTM parameter persistence functionality across user sessions
+- Added intelligent UTM parameter tracking for all internal links
+- Enhanced link handling with MutationObserver for dynamically added content
+- Applied error handling for malformed URLs and external links
+- Ensured optimal page performance with proper script loading strategies
+- Integrated components into the root layout for site-wide functionality
+- Followed Next.js best practices for analytics integration
+- Maintained compatibility with existing code structure
 
-These changes ensure our centralized string constants are properly backed up while making the deployment process cleaner and more efficient without validation overhead.
+These changes enable accurate traffic tracking and UTM parameter persistence throughout the user journey, improving marketing attribution capabilities.

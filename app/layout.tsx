@@ -4,6 +4,10 @@ import { metadata as metadataStrings } from "@/lib/constants";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
+// Import analytics and tracking components
+import GoogleTagManager, { GoogleTagManagerNoScript } from "@/components/GoogleTagManager";
+import UTMTracker from "@/components/UTMTracker";
+
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
@@ -24,7 +28,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-MX">
-      <body className={`${poppins.variable} font-poppins`}>{children}</body>
+      <GoogleTagManager />
+      <body className={`${poppins.variable} font-poppins`}>
+        <GoogleTagManagerNoScript />
+        <UTMTracker />
+        {children}
+      </body>
     </html>
   );
 }
