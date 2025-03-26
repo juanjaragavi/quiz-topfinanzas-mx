@@ -25,18 +25,25 @@ export default function UTMTracker() {
       // Function to add UTM parameters to links
       const addUtmParamsToLinks = () => {
         const links = document.querySelectorAll("a");
-        
+
         links.forEach((link) => {
           try {
             // Only process links with href and same origin or relative links
-            if (!link.href || link.href.trim() === "" || link.href.startsWith("javascript:")) {
+            if (
+              !link.href ||
+              link.href.trim() === "" ||
+              link.href.startsWith("javascript:")
+            ) {
               return;
             }
 
             const url = new URL(link.href);
-            
+
             // Skip if the link is to an external domain
-            if (url.origin !== window.location.origin && !link.href.startsWith("/")) {
+            if (
+              url.origin !== window.location.origin &&
+              !link.href.startsWith("/")
+            ) {
               return;
             }
 
@@ -46,7 +53,10 @@ export default function UTMTracker() {
               if (params.has(param)) {
                 url.searchParams.set(param, params.get(param) || "");
               } else if (sessionStorage.getItem(param)) {
-                url.searchParams.set(param, sessionStorage.getItem(param) || "");
+                url.searchParams.set(
+                  param,
+                  sessionStorage.getItem(param) || ""
+                );
               }
             });
 
@@ -64,12 +74,9 @@ export default function UTMTracker() {
       // Use MutationObserver to handle dynamically added links
       const observer = new MutationObserver((mutations) => {
         let shouldProcessLinks = false;
-        
+
         mutations.forEach((mutation) => {
-          if (
-            mutation.type === "childList" &&
-            mutation.addedNodes.length > 0
-          ) {
+          if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
             shouldProcessLinks = true;
           }
         });

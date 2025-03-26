@@ -5,7 +5,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 
 // Import analytics and tracking components
-import GoogleTagManager, { GoogleTagManagerNoScript } from "@/components/GoogleTagManager";
+import GoogleTagManager, {
+  GoogleTagManagerNoScript,
+} from "@/components/GoogleTagManager";
 import UTMTracker from "@/components/UTMTracker";
 
 const poppins = Poppins({
