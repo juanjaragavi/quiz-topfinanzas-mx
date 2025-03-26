@@ -44,7 +44,8 @@ export default function CreditCardForm() {
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
     console.log("Form submitted with data:", formData);
-    window.location.href = "https://topfinanzas.com/mx/recomendador-de-tarjetas-de-credito-p1/";
+    window.location.href =
+      "https://topfinanzas.com/mx/recomendador-de-tarjetas-de-credito-p1/";
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
