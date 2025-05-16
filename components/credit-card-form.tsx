@@ -45,7 +45,7 @@ export default function CreditCardForm() {
     e?.preventDefault();
     console.log("Form submitted with data:", formData);
     window.location.href =
-      "https://topfinanzas.com/mx/recomendador-de-tarjetas-de-credito-p1/";
+      "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-1/";
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
