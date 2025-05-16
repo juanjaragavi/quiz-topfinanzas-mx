@@ -335,7 +335,7 @@ export default function Step3({
 
       <div className="mt-8">
         <div className="flex justify-center mb-4">
-          <div className="rounded-full bg-[#2E74B5] text-white px-6 py-2 shadow-md">
+          <div className="">
             <VisitorCounter />
           </div>
         </div>

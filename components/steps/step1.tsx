@@ -63,7 +63,7 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
 
       <div className="mt-10">
         <div className="flex justify-center mb-4">
-          <div className="rounded-full bg-[#2E74B5] text-white px-6 py-2 shadow-md">
+          <div className="">
             <VisitorCounter />
           </div>
         </div>

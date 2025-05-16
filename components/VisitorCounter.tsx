@@ -10,8 +10,9 @@ export default function VisitorCounter() {
   }, []);
 
   return (
-    <span className="text-xs">
-      <span className="font-bold">{count}</span> solicitudes exitosas hoy
+    <span className="text-xs bg-transparent shadow-none">
+      <span className="font-bold text-blue-600">{count}</span>
+      <span className="text-black"> solicitudes exitosas hoy</span>
     </span>
   );
 }
