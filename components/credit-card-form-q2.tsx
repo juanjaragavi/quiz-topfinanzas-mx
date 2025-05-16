@@ -43,7 +43,7 @@ export default function CreditCardFormQ2() {
     e?.preventDefault();
     console.log("Form submitted with data:", formData);
     window.location.href =
-      "https://topfinanzas.com/mx/soluciones-financieras/tarjeta-de-credito-nubank-vcorta/";
+      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/";
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
