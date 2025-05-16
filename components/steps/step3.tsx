@@ -16,7 +16,6 @@ interface Step3Props {
     email: string;
     name: string;
     lastName: string;
-    phone: string;
     receiveMessages: boolean;
   };
   updateFormData: (
@@ -24,15 +23,12 @@ interface Step3Props {
       email: string;
       name: string;
       lastName: string;
-      phone: string;
       receiveMessages: boolean;
     }>
   ) => void;
   onSubmit: (e?: React.FormEvent) => void;
   handleLastNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   lastName: string;
-  phone: string;
 }
 
 export default function Step3({
@@ -40,9 +36,7 @@ export default function Step3({
   updateFormData,
   onSubmit,
   handleLastNameChange,
-  handlePhoneChange,
   lastName,
-  phone,
 }: Step3Props) {
   const [email, setEmail] = useState(formData.email);
   const [name, setName] = useState(formData.name);
@@ -53,13 +47,11 @@ export default function Step3({
     email: string | null;
     name: string | null;
     lastName: string | null;
-    phone: string | null;
     general: string | null;
   }>({
     email: null,
     name: null,
     lastName: null,
-    phone: null,
     general: null,
   });
 
@@ -164,71 +156,11 @@ export default function Step3({
     updateFormData({ receiveMessages: checked });
   };
 
-  const validatePhone = (phoneNumber: string): boolean => {
-    if (!phoneNumber) {
-      setErrors((prev) => ({
-        ...prev,
-        phone: step3Texts.validationErrors.phoneRequired,
-      }));
-      return false;
-    }
-
-    // Mexican phone numbers should be 10 digits
-    // This regex checks for 10 consecutive digits
-    const mexicanPhoneRegex = /^\d{10}$/;
-
-    if (!mexicanPhoneRegex.test(phoneNumber)) {
-      setErrors((prev) => ({
-        ...prev,
-        phone: step3Texts.validationErrors.phoneFormat,
-      }));
-      return false;
-    }
-
-    // Check for common Mexican LADA (area) codes
-    // First 2-3 digits of mobile numbers often start with these
-    const firstThreeDigits = phoneNumber.substring(0, 3);
-    const validLadaCodes = [
-      // Mobile prefixes
-      "55",
-      "56",
-      "33",
-      "81",
-      "44",
-      "45",
-      "55",
-      "56",
-      "222",
-      "221",
-      "442",
-      "477",
-      "664",
-      "998",
-      "999",
-    ];
-
-    const firstTwoDigits = phoneNumber.substring(0, 2);
-    if (
-      !validLadaCodes.includes(firstThreeDigits) &&
-      !validLadaCodes.includes(firstTwoDigits)
-    ) {
-      setErrors((prev) => ({
-        ...prev,
-        phone: step3Texts.validationErrors.phoneLada,
-      }));
-      return false;
-    }
-
-    setErrors((prev) => ({ ...prev, phone: null }));
-    return true;
-  };
-
   const validateForm = (): boolean => {
     // Validar todos los campos
     const isEmailValid = validateEmail(email);
     const isNameValid = validateName(name);
     const isLastNameValid = validateLastName(lastName);
-    const isPhoneValid = validatePhone(phone);
 
     // Si no está marcado el checkbox de recibir mensajes
     if (!receiveMessages) {
@@ -241,13 +173,7 @@ export default function Step3({
       setErrors((prev) => ({ ...prev, general: null }));
     }
 
-    return (
-      isEmailValid &&
-      isNameValid &&
-      isLastNameValid &&
-      isPhoneValid &&
-      receiveMessages
-    );
+    return isEmailValid && isNameValid && isLastNameValid && receiveMessages;
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -358,38 +284,6 @@ export default function Step3({
           {errors.lastName && (
             <p id="lastName-error" className="text-xs text-red-500 mt-1">
               {errors.lastName}
-            </p>
-          )}
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor="phone" className="text-sm">
-            Celular
-          </Label>
-          <Input
-            id="phone"
-            type="tel"
-            value={phone}
-            onChange={(e) => {
-              handlePhoneChange(e);
-              if (phone.length > 2) {
-                validatePhone(e.target.value);
-              }
-            }}
-            onBlur={() => validatePhone(phone)}
-            required
-            className={`h-9 text-sm ${
-              errors.phone
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "border-[#2E74B5] focus-visible:ring-[#8DC63F]"
-            }`}
-            placeholder="10 dígitos (ej. 5512345678)"
-            maxLength={10}
-            aria-describedby="phone-error"
-          />
-          {errors.phone && (
-            <p id="phone-error" className="text-xs text-red-500 mt-1">
-              {errors.phone}
             </p>
           )}
         </div>

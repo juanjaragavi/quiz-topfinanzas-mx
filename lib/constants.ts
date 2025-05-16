@@ -40,7 +40,6 @@ export const step3Strings = {
     email: "Correo",
     name: "Nombre",
     lastName: "Apellido",
-    phone: "Celular",
   },
   checkbox: "Acepto políticas de datos y términos y condiciones",
   button: "VER OPCIONES DE TARJETAS",
@@ -48,6 +47,5 @@ export const step3Strings = {
     email: "ejemplo@correo.com",
     name: "Tu nombre",
     lastName: "Tu apellido",
-    phone: "10 dígitos (ej. 5512345678)",
   },
 };

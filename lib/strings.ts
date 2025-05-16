@@ -38,9 +38,6 @@ export const step3Texts = {
     nameLength: "El nombre debe tener al menos 2 caracteres",
     lastNameRequired: "El apellido es obligatorio",
     lastNameLength: "El apellido debe tener al menos 2 caracteres",
-    phoneRequired: "El número de teléfono es obligatorio",
-    phoneFormat: "Ingresa un número de celular mexicano válido (10 dígitos)",
-    phoneLada: "El código LADA no parece válido para México",
     acceptTerms: "Debes aceptar recibir información para continuar",
   },
 };

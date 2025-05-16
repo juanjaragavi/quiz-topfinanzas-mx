@@ -17,12 +17,10 @@ export default function CreditCardForm() {
     email: "",
     name: "",
     lastName: "",
-    phone: "",
     receiveMessages: false,
   });
 
   const [lastName, setLastName] = useState(formData.lastName);
-  const [phone, setPhone] = useState(formData.phone);
 
   const totalSteps = 3;
   const progress = Math.round(((step - 1) / (totalSteps - 1)) * 100) || 0;
@@ -51,11 +49,6 @@ export default function CreditCardForm() {
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(e.target.value);
     updateFormData({ lastName: e.target.value });
-  };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
-    updateFormData({ phone: e.target.value });
   };
 
   return (
@@ -88,9 +81,7 @@ export default function CreditCardForm() {
                     updateFormData={updateFormData}
                     onSubmit={handleSubmit}
                     handleLastNameChange={handleLastNameChange}
-                    handlePhoneChange={handlePhoneChange}
                     lastName={lastName}
-                    phone={phone}
                   />
                 </>
               )}
