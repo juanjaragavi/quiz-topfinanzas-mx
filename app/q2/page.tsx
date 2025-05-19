@@ -1,4 +1,4 @@
-import CreditCardFormQ2 from "@/components/credit-card-form-q2"
+import CreditCardFormQ2 from "@/components/credit-card-form-q2";
 
 export default function HomeQ2() {
   return (
@@ -7,5 +7,5 @@ export default function HomeQ2() {
         <CreditCardFormQ2 />
       </section>
     </main>
-  )
+  );
 }
