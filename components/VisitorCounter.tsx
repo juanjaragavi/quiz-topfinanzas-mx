@@ -11,7 +11,7 @@ export default function VisitorCounter() {
 
   return (
     <span className="text-xs bg-transparent shadow-none">
-      <span className="font-bold text-blue-600">{count}</span>
+      <span className="font-bold text-[#4A8BC5]">{count}</span>
       <span className="text-black"> solicitudes exitosas hoy</span>
     </span>
   );
