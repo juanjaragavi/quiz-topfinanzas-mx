@@ -1,7 +1,6 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
 
 export const GTM_ID = "GTM-K753GNBZ";
 
