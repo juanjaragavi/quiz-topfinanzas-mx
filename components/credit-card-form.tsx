@@ -8,6 +8,7 @@ import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Logo from "./ui/logo";
 import { formStrings } from "@/lib/constants";
+import { submitQuiz1 } from "@/actions/quizActions";
 
 export default function CreditCardForm() {
   const [step, setStep] = useState(1);
@@ -39,11 +40,18 @@ export default function CreditCardForm() {
     }
   }, [formData, step]);
 
-  const handleSubmit = (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
-    console.log("Form submitted with data:", formData);
-    window.location.href =
-      "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-1/";
+    // console.log("Form submitted with data:", formData); // Server action will log this
+    // window.location.href =
+    //   "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-1/";
+    try {
+      await submitQuiz1(formData);
+      // Redirect will be handled by the server action
+    } catch (error) {
+      console.error("Failed to submit quiz 1:", error);
+      // Handle error appropriately in the UI if needed
+    }
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
