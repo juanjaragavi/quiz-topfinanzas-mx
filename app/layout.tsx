@@ -30,7 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-MX">
-      <GoogleTagManager />
+      <head>
+        {/* GTM script is placed here via the GoogleTagManager component */}
+        <GoogleTagManager />
+      </head>
       <body className={`${poppins.variable} font-poppins`}>
         <GoogleTagManagerNoScript />
         <UTMTracker />
