@@ -57,6 +57,7 @@ export default function Step1({ formData, updateFormData }: Step1Props) {
             selected={selected === option.id}
             onClick={() => handleSelect(option.id)}
             delay={0.1 * index}
+            className="pregunta_1"
           />
         ))}
       </motion.div>

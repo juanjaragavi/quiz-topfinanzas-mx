@@ -8,6 +8,7 @@ interface OptionButtonProps {
   selected: boolean;
   onClick: () => void;
   delay?: number;
+  className?: string;
 }
 
 export default function OptionButton({
@@ -16,6 +17,7 @@ export default function OptionButton({
   selected,
   onClick,
   delay = 0,
+  className = "",
 }: OptionButtonProps) {
   return (
     <motion.button
@@ -25,7 +27,7 @@ export default function OptionButton({
         selected
           ? "selected bg-[#6fade7] text-[#8DC63F]"
           : "bg-[#296eb0]/80 text-white hover:bg-opacity-90"
-      }`}
+      } ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
