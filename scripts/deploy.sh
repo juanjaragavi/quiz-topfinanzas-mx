@@ -7,7 +7,7 @@
 # Configuration
 SERVICE_NAME="quiz-topfinanzas-mx"
 LOG_FILE="/var/log/topfinanzas-rebuilds.log"
-PROJECT_DIR="/var/www/html/mx/quiz-topfinanzas-mx"
+PROJECT_DIR="/var/www/html/quiz-topfinanzas-mx"
 STRINGS_DIR="${PROJECT_DIR}/lib/strings.ts"
 CONSTANTS_DIR="${PROJECT_DIR}/lib/constants.ts"
 BACKUP_BASE_DIR="${PROJECT_DIR}/backups"
