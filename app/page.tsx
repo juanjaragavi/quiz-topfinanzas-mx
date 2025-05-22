@@ -29,6 +29,10 @@ export default async function Home() {
   // A user is registered if their quiz is marked completed AND they are not on an excluded IP list.
   const isRegisteredUser = !isExcludedIp && quiz1Completed?.value === "true";
 
+  console.log(
+    `[app/page.tsx] User IP: ${userIp}, Is Excluded: ${isExcludedIp}, Quiz1 Completed Cookie: ${quiz1Completed?.value}, Calculated isRegisteredUser: ${isRegisteredUser}`
+  );
+
   // The immediate redirect based on quiz1Completed is removed from here.
   // This logic will now be handled within CreditCardForm or by actions it calls.
   // The old redirect logic:

@@ -18,6 +18,7 @@ interface CreditCardFormProps {
 }
 
 export default function CreditCardForm({ isRegistered }: CreditCardFormProps) {
+  console.log("[CreditCardForm] Received isRegistered prop:", isRegistered);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     preference: "",
@@ -38,18 +39,29 @@ export default function CreditCardForm({ isRegistered }: CreditCardFormProps) {
   };
 
   useEffect(() => {
+    console.log(
+      `[CreditCardForm useEffect] Step: ${step}, Preference: ${formData.preference}, Income: ${formData.income}, isRegistered: ${isRegistered}`
+    );
     if (step === 1 && formData.preference) {
+      console.log("[CreditCardForm useEffect] Advancing from Step 1 to Step 2");
       // Auto-advance from Step 1 to Step 2
       const timer = setTimeout(() => setStep(2), 500);
       return () => clearTimeout(timer);
     } else if (step === 2 && formData.income) {
+      console.log("[CreditCardForm useEffect] Completed Step 2");
       // Completed Step 2
       if (isRegistered) {
+        console.log(
+          "[CreditCardForm useEffect] User is registered. Attempting redirect."
+        );
         // If registered, bypass Step 3 and redirect
         const performRedirect = async () => {
           try {
             await redirectToFinalQuiz1Destination();
             // Redirect will be handled by the server action
+            console.log(
+              "[CreditCardForm useEffect] Redirect action called for registered user."
+            );
           } catch (error) {
             console.error("Failed to redirect registered user:", error);
             // Optionally, handle UI error state here
@@ -59,6 +71,9 @@ export default function CreditCardForm({ isRegistered }: CreditCardFormProps) {
         };
         performRedirect();
       } else {
+        console.log(
+          "[CreditCardForm useEffect] User not registered. Advancing to Step 3."
+        );
         // If not registered, proceed to Step 3
         const timer = setTimeout(() => setStep(3), 500);
         return () => clearTimeout(timer);
