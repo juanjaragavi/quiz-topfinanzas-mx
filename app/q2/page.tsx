@@ -12,15 +12,23 @@ const EXCLUDED_IPS = ["181.50.163.211"];
 export default async function HomeQ2({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams:
+    | Promise<{ [key: string]: string | string[] | undefined }>
+    | { [key: string]: string | string[] | undefined };
 }) {
+  // Await searchParams if it's a Promise (Next.js 15+ behavior)
+  const params = await searchParams;
+
   // Store UTM parameters in cookies if they exist in the URL
   const urlSearchParams = new URLSearchParams();
-  Object.entries(searchParams).forEach(([key, value]) => {
-    if (UTM_PARAMS.includes(key) && typeof value === "string") {
-      urlSearchParams.set(key, value);
-    }
-  });
+
+  if (params && typeof params === "object") {
+    Object.entries(params).forEach(([key, value]) => {
+      if (UTM_PARAMS.includes(key) && typeof value === "string") {
+        urlSearchParams.set(key, value);
+      }
+    });
+  }
 
   if (urlSearchParams.toString()) {
     await storeUTMParamsInCookies(urlSearchParams);
