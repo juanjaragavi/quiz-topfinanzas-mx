@@ -49,3 +49,11 @@ export const step3Strings = {
     lastName: "Tu apellido",
   },
 };
+
+export const UTM_PARAMS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+];

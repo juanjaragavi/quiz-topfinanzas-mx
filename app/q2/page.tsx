@@ -1,6 +1,7 @@
 import CreditCardFormQ2 from "@/components/credit-card-form-q2";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { UTM_PARAMS } from "@/lib/constants"; // Import UTM_PARAMS
 
 const EXCLUDED_IPS = ["179.33.232.2", "181.50.163.211"];
 
@@ -27,9 +28,23 @@ export default async function HomeQ2() {
   const isExcludedIp = EXCLUDED_IPS.includes(userIp);
 
   if (!isExcludedIp && quiz2Completed?.value === "true") {
-    redirect(
-      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/?utm_source=adwords&utm_campaign=22589599879&utm_content=178590506134&utm_medium=cpc"
-    );
+    const baseRedirectUrl =
+      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/"; // Base URL without UTMs
+    const redirectUrlParams = new URLSearchParams();
+
+    UTM_PARAMS.forEach((param) => {
+      const cookie = cookieStore.get(param);
+      if (cookie && cookie.value) {
+        redirectUrlParams.set(param, cookie.value);
+      }
+    });
+
+    let finalRedirectUrl = baseRedirectUrl;
+    if (redirectUrlParams.toString()) {
+      finalRedirectUrl += `?${redirectUrlParams.toString()}`;
+    }
+
+    redirect(finalRedirectUrl);
   }
 
   return (

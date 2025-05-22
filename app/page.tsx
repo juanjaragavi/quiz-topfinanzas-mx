@@ -1,6 +1,7 @@
 import CreditCardForm from "@/components/credit-card-form";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { UTM_PARAMS } from "@/lib/constants"; // Import UTM_PARAMS
 
 const EXCLUDED_IPS = ["179.33.232.2", "181.50.163.211"];
 
@@ -27,9 +28,23 @@ export default async function Home() {
   const isExcludedIp = EXCLUDED_IPS.includes(userIp);
 
   if (!isExcludedIp && quiz1Completed?.value === "true") {
-    redirect(
-      "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-1/?utm_source=adwords&utm_campaign=22589599879&utm_content=178590506134&utm_medium=cpc"
-    );
+    const baseRedirectUrl =
+      "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-1/";
+    const redirectUrlParams = new URLSearchParams();
+
+    UTM_PARAMS.forEach((param) => {
+      const cookie = cookieStore.get(param);
+      if (cookie && cookie.value) {
+        redirectUrlParams.set(param, cookie.value);
+      }
+    });
+
+    let finalRedirectUrl = baseRedirectUrl;
+    if (redirectUrlParams.toString()) {
+      finalRedirectUrl += `?${redirectUrlParams.toString()}`;
+    }
+
+    redirect(finalRedirectUrl);
   }
 
   return (
