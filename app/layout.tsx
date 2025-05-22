@@ -6,6 +6,7 @@ import "./globals.css";
 import UtmPersister from "@/components/analytics/utm-persister";
 import UtmMonitor from "@/components/analytics/utm-monitor";
 import { Suspense } from "react";
+import NavigationProvider from "@/components/providers/navigation-provider";
 
 // Import analytics and tracking components
 import GoogleTagManager, {
@@ -38,13 +39,15 @@ export default function RootLayout({
         <GoogleTagManager />
       </head>
       <body className={`${poppins.variable} font-poppins`}>
-        <Suspense fallback={null}>
-          <GoogleTagManagerNoScript />
-          <UTMTracker />
-          <UtmPersister />
-          {process.env.NODE_ENV === "development" && <UtmMonitor />}
-        </Suspense>
-        {children}
+        <NavigationProvider>
+          <Suspense fallback={null}>
+            <GoogleTagManagerNoScript />
+            <UTMTracker />
+            <UtmPersister />
+            {process.env.NODE_ENV === "development" && <UtmMonitor />}
+          </Suspense>
+          {children}
+        </NavigationProvider>
       </body>
     </html>
   );
