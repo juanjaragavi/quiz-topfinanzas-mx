@@ -8,9 +8,16 @@ import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Logo from "./ui/logo";
 import { formStrings } from "@/lib/constants";
-import { submitQuiz1 } from "@/actions/quizActions";
+import {
+  submitQuiz1,
+  redirectToFinalQuiz1Destination,
+} from "@/actions/quizActions";
 
-export default function CreditCardForm() {
+interface CreditCardFormProps {
+  isRegistered: boolean;
+}
+
+export default function CreditCardForm({ isRegistered }: CreditCardFormProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     preference: "",
@@ -31,14 +38,33 @@ export default function CreditCardForm() {
   };
 
   useEffect(() => {
-    if (
-      step < totalSteps &&
-      ((step === 1 && formData.preference) || (step === 2 && formData.income))
-    ) {
-      const timer = setTimeout(() => setStep(step + 1), 500);
+    if (step === 1 && formData.preference) {
+      // Auto-advance from Step 1 to Step 2
+      const timer = setTimeout(() => setStep(2), 500);
       return () => clearTimeout(timer);
+    } else if (step === 2 && formData.income) {
+      // Completed Step 2
+      if (isRegistered) {
+        // If registered, bypass Step 3 and redirect
+        const performRedirect = async () => {
+          try {
+            await redirectToFinalQuiz1Destination();
+            // Redirect will be handled by the server action
+          } catch (error) {
+            console.error("Failed to redirect registered user:", error);
+            // Optionally, handle UI error state here
+            // As a fallback, could proceed to step 3, but task implies skipping.
+            // For now, log error and user stays on step 2 if redirect fails.
+          }
+        };
+        performRedirect();
+      } else {
+        // If not registered, proceed to Step 3
+        const timer = setTimeout(() => setStep(3), 500);
+        return () => clearTimeout(timer);
+      }
     }
-  }, [formData, step]);
+  }, [formData.preference, formData.income, step, isRegistered, totalSteps]); // Added totalSteps for completeness, though not directly used in new logic
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();
