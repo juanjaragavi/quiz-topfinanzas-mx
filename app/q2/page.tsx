@@ -9,34 +9,52 @@ import {
 
 const EXCLUDED_IPS = ["181.50.163.211"];
 
-export default async function HomeQ2({
-  searchParams,
-}: {
-  searchParams:
+interface PageProps {
+  searchParams?:
     | Promise<{ [key: string]: string | string[] | undefined }>
     | { [key: string]: string | string[] | undefined };
-}) {
-  // Await searchParams if it's a Promise (Next.js 15+ behavior)
-  const params = await searchParams;
+}
 
-  // Store UTM parameters in cookies if they exist in the URL
-  const urlSearchParams = new URLSearchParams();
+export default async function HomeQ2({ searchParams }: PageProps) {
+  try {
+    // Handle searchParams safely
+    let params: { [key: string]: string | string[] | undefined } = {};
 
-  if (params && typeof params === "object") {
-    Object.entries(params).forEach(([key, value]) => {
-      if (UTM_PARAMS.includes(key) && typeof value === "string") {
-        urlSearchParams.set(key, value);
+    if (searchParams) {
+      // Check if searchParams is a Promise and await it
+      if (searchParams instanceof Promise) {
+        params = await searchParams;
+      } else {
+        params = searchParams;
       }
-    });
+    }
+
+    // Store UTM parameters in cookies if they exist in the URL
+    const urlSearchParams = new URLSearchParams();
+
+    if (params && typeof params === "object") {
+      Object.entries(params).forEach(([key, value]) => {
+        if (UTM_PARAMS.includes(key) && typeof value === "string") {
+          urlSearchParams.set(key, value);
+        }
+      });
+    }
+
+    if (urlSearchParams.toString()) {
+      try {
+        await storeUTMParamsInCookies(urlSearchParams);
+        console.log(
+          "[app/q2/page.tsx] Stored UTM parameters in cookies:",
+          urlSearchParams.toString()
+        );
+      } catch (error) {
+        console.error("[app/q2/page.tsx] Error storing UTM parameters:", error);
+      }
+    }
+  } catch (error) {
+    console.error("[app/q2/page.tsx] Error processing search params:", error);
   }
 
-  if (urlSearchParams.toString()) {
-    await storeUTMParamsInCookies(urlSearchParams);
-    console.log(
-      "[app/q2/page.tsx] Stored UTM parameters in cookies:",
-      urlSearchParams.toString()
-    );
-  }
   const cookieStore = await cookies();
   const quiz2Completed = cookieStore.get("quiz2_completed");
 
