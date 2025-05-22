@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { metadata as metadataStrings } from "@/lib/constants";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import UtmPersister from "@/components/analytics/utm-persister";
+import UtmMonitor from "@/components/analytics/utm-monitor";
+import { Suspense } from "react";
 
 // Import analytics and tracking components
 import GoogleTagManager, {
@@ -35,8 +38,12 @@ export default function RootLayout({
         <GoogleTagManager />
       </head>
       <body className={`${poppins.variable} font-poppins`}>
-        <GoogleTagManagerNoScript />
-        <UTMTracker />
+        <Suspense fallback={null}>
+          <GoogleTagManagerNoScript />
+          <UTMTracker />
+          <UtmPersister />
+          {process.env.NODE_ENV === "development" && <UtmMonitor />}
+        </Suspense>
         {children}
       </body>
     </html>

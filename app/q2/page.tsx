@@ -28,7 +28,7 @@ export default async function HomeQ2() {
 
   if (!isExcludedIp && quiz2Completed?.value === "true") {
     redirect(
-      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/"
+      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/?utm_source=adwords&utm_campaign=22589599879&utm_content=178590506134&utm_medium=cpc"
     );
   }
 
