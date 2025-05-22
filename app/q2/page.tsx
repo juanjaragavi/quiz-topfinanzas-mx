@@ -3,7 +3,7 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { UTM_PARAMS } from "@/lib/constants"; // Import UTM_PARAMS
 
-const EXCLUDED_IPS = ["179.33.232.2", "181.50.163.211"];
+const EXCLUDED_IPS = ["181.50.163.211"];
 
 export default async function HomeQ2() {
   const cookieStore = await cookies();

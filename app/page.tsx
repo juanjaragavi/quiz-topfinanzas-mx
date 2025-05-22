@@ -3,7 +3,7 @@ import { cookies, headers } from "next/headers";
 // Removed 'redirect' from "next/navigation" as it's no longer used directly here for quiz completion
 import { UTM_PARAMS } from "@/lib/constants"; // Import UTM_PARAMS
 
-const EXCLUDED_IPS = ["179.33.232.2", "181.50.163.211"];
+const EXCLUDED_IPS = ["181.50.163.211"];
 
 export default async function Home() {
   const cookieStore = await cookies();
