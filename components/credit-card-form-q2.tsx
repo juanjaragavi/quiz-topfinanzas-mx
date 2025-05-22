@@ -8,9 +8,19 @@ import Step2 from "./steps/step2";
 import Step3 from "./steps/step3";
 import Logo from "./ui/logo";
 import { formStrings } from "@/lib/constants";
-import { submitQuiz2 } from "@/actions/quizActions";
+import {
+  submitQuiz2,
+  redirectToFinalQuiz2Destination,
+} from "@/actions/quizActions";
 
-export default function CreditCardFormQ2() {
+interface CreditCardFormQ2Props {
+  isRegistered: boolean;
+}
+
+export default function CreditCardFormQ2({
+  isRegistered,
+}: CreditCardFormQ2Props) {
+  console.log("[CreditCardFormQ2] Received isRegistered prop:", isRegistered);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     preference: "",
@@ -31,14 +41,49 @@ export default function CreditCardFormQ2() {
   };
 
   useEffect(() => {
-    if (
-      step < totalSteps &&
-      ((step === 1 && formData.preference) || (step === 2 && formData.income))
-    ) {
-      const timer = setTimeout(() => setStep(step + 1), 500);
+    console.log(
+      `[CreditCardFormQ2 useEffect] Step: ${step}, Preference: ${formData.preference}, Income: ${formData.income}, isRegistered: ${isRegistered}`
+    );
+    if (step === 1 && formData.preference) {
+      console.log(
+        "[CreditCardFormQ2 useEffect] Advancing from Step 1 to Step 2"
+      );
+      // Auto-advance from Step 1 to Step 2
+      const timer = setTimeout(() => setStep(2), 500);
       return () => clearTimeout(timer);
+    } else if (step === 2 && formData.income) {
+      console.log("[CreditCardFormQ2 useEffect] Completed Step 2");
+      // Completed Step 2
+      if (isRegistered) {
+        console.log(
+          "[CreditCardFormQ2 useEffect] User is registered. Attempting redirect."
+        );
+        // If registered, bypass Step 3 and redirect
+        const performRedirect = async () => {
+          try {
+            await redirectToFinalQuiz2Destination();
+            // Redirect will be handled by the server action
+            console.log(
+              "[CreditCardFormQ2 useEffect] Redirect action called for registered user."
+            );
+          } catch (error) {
+            console.error("Failed to redirect registered user:", error);
+            // Optionally, handle UI error state here
+            // As a fallback, could proceed to step 3, but task implies skipping.
+            // For now, log error and user stays on step 2 if redirect fails.
+          }
+        };
+        performRedirect();
+      } else {
+        console.log(
+          "[CreditCardFormQ2 useEffect] User not registered. Advancing to Step 3."
+        );
+        // If not registered, proceed to Step 3
+        const timer = setTimeout(() => setStep(3), 500);
+        return () => clearTimeout(timer);
+      }
     }
-  }, [formData, step]);
+  }, [formData.preference, formData.income, step, isRegistered, totalSteps]);
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();

@@ -76,23 +76,21 @@ export default async function HomeQ2({ searchParams }: PageProps) {
 
   const isExcludedIp = EXCLUDED_IPS.includes(userIp);
 
-  if (!isExcludedIp && quiz2Completed?.value === "true") {
-    // Use the appendUTMParamsToUrl utility for consistency
-    const baseUrl =
-      "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/";
-    const finalUrl = await appendUTMParamsToUrl(baseUrl);
+  // Determine if the user is considered "registered" for the purpose of the quiz flow
+  // A user is registered if their quiz is marked completed AND they are not on an excluded IP list.
+  const isRegisteredUser = !isExcludedIp && quiz2Completed?.value === "true";
 
-    console.log(
-      "[app/q2/page.tsx] Registered user redirect URL with UTM params:",
-      finalUrl
-    );
-    redirect(finalUrl);
-  }
+  console.log(
+    `[app/q2/page.tsx] User IP: ${userIp}, Is Excluded: ${isExcludedIp}, Quiz2 Completed Cookie: ${quiz2Completed?.value}, Calculated isRegisteredUser: ${isRegisteredUser}`
+  );
+
+  // Don't redirect immediately - let the user go through steps 1 and 2
+  // The CreditCardFormQ2 component will handle skipping step 3 for registered users
 
   return (
     <main className="flex min-h-[100dvh] flex-col justify-start bg-gray-100 pb-safe">
       <section className="w-full p-0">
-        <CreditCardFormQ2 />
+        <CreditCardFormQ2 isRegistered={isRegisteredUser} />
       </section>
     </main>
   );

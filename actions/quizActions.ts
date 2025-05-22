@@ -70,3 +70,16 @@ export async function redirectToFinalQuiz1Destination() {
   console.log("Registered user redirect URL with UTM params:", finalUrl);
   redirect(finalUrl);
 }
+
+export async function redirectToFinalQuiz2Destination() {
+  // This action redirects a user who is already registered and has completed steps 1 and 2 for quiz 2.
+  // It includes UTM parameter handling from cookies.
+
+  // Use the appendUTMParamsToUrl utility for consistency
+  const baseUrl =
+    "https://topfinanzas.com/mx/soluciones-financieras/guia-tarjeta-de-credito-nu-bank/";
+  const finalUrl = await appendUTMParamsToUrl(baseUrl);
+
+  console.log("Quiz 2 registered user redirect URL with UTM params:", finalUrl);
+  redirect(finalUrl);
+}
