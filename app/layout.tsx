@@ -13,6 +13,7 @@ import GoogleTagManager, {
   GoogleTagManagerNoScript,
 } from "@/components/GoogleTagManager";
 import UTMTracker from "@/components/UTMTracker";
+import UTMCookieSync from "@/components/analytics/utm-cookie-sync";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -44,6 +45,7 @@ export default function RootLayout({
             <GoogleTagManagerNoScript />
             <UTMTracker />
             <UtmPersister />
+            <UTMCookieSync />
             {process.env.NODE_ENV === "development" && <UtmMonitor />}
           </Suspense>
           {children}

@@ -2,10 +2,30 @@ import CreditCardForm from "@/components/credit-card-form";
 import { cookies, headers } from "next/headers";
 // Removed 'redirect' from "next/navigation" as it's no longer used directly here for quiz completion
 import { UTM_PARAMS } from "@/lib/constants"; // Import UTM_PARAMS
+import { storeUTMParamsInCookies } from "@/lib/utm-cookie-manager";
 
 const EXCLUDED_IPS = ["181.50.163.211"];
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  // Store UTM parameters in cookies if they exist in the URL
+  const urlSearchParams = new URLSearchParams();
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (UTM_PARAMS.includes(key) && typeof value === "string") {
+      urlSearchParams.set(key, value);
+    }
+  });
+
+  if (urlSearchParams.toString()) {
+    await storeUTMParamsInCookies(urlSearchParams);
+    console.log(
+      "[app/page.tsx] Stored UTM parameters in cookies:",
+      urlSearchParams.toString()
+    );
+  }
   const cookieStore = await cookies();
   const quiz1Completed = cookieStore.get("quiz1_completed");
 
