@@ -29,7 +29,7 @@ export async function submitQuiz1(formData: FormData) {
 
   // Append UTM parameters from cookies to the redirect URL
   const baseUrl =
-    "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-2/";
+    "https://topfinanzas.com/mx/recomendador-de-tarjetas-de-credito-p1/";
   const finalUrl = await appendUTMParamsToUrl(baseUrl);
 
   console.log("Quiz 1 redirect URL with UTM params:", finalUrl);
