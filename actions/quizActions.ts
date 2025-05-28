@@ -64,7 +64,7 @@ export async function redirectToFinalQuiz1Destination() {
 
   // Use the appendUTMParamsToUrl utility for consistency
   const baseUrl =
-    "https://topfinanzas.com/mx/encuentra-tu-solucion-financiera-ideal-2/";
+    "https://topfinanzas.com/mx/recomendador-de-tarjetas-de-credito-p1/";
   const finalUrl = await appendUTMParamsToUrl(baseUrl);
 
   console.log("Registered user redirect URL with UTM params:", finalUrl);
