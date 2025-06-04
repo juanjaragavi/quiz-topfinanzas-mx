@@ -71,12 +71,19 @@ export default async function Home({ searchParams }: PageProps) {
 
   const isExcludedIp = EXCLUDED_IPS.includes(userIp);
 
+  // Check if cookie validation bypass is enabled
+  const bypassCookieValidation =
+    process.env.BYPASS_QUIZ_COOKIE_VALIDATION === "true";
+
   // Determine if the user is considered "registered" for the purpose of the quiz flow
   // A user is registered if their quiz is marked completed AND they are not on an excluded IP list.
-  const isRegisteredUser = !isExcludedIp && quiz1Completed?.value === "true";
+  // However, if the bypass is enabled, always treat users as not registered (new users)
+  const isRegisteredUser = bypassCookieValidation
+    ? false
+    : !isExcludedIp && quiz1Completed?.value === "true";
 
   console.log(
-    `[app/page.tsx] User IP: ${userIp}, Is Excluded: ${isExcludedIp}, Quiz1 Completed Cookie: ${quiz1Completed?.value}, Calculated isRegisteredUser: ${isRegisteredUser}`
+    `[app/page.tsx] User IP: ${userIp}, Is Excluded: ${isExcludedIp}, Quiz1 Completed Cookie: ${quiz1Completed?.value}, Bypass Enabled: ${bypassCookieValidation}, Calculated isRegisteredUser: ${isRegisteredUser}`
   );
 
   // The immediate redirect based on quiz1Completed is removed from here.
